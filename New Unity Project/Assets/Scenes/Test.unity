@@ -1565,7 +1565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wood: 0
-  village: {fileID: 0}
+  buildBarricade: 0
 --- !u!1 &1990636121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,6 +1618,56 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 519516359231029828, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 519516359231029828, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 519516359231029828, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 519516359231029829, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 519516359231029829, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 519516359231029829, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 519516359366871436, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 519516359366871436, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 519516359366871436, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 519516359544516657, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
+        type: 3}
+      propertyPath: timeToDamage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 519516359544516659, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1678,5 +1728,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 519516359544516658, guid: 4b162bc8d06bf4b4d9b2d3d48be93657, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4b162bc8d06bf4b4d9b2d3d48be93657, type: 3}

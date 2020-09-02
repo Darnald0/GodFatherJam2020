@@ -8,16 +8,30 @@ public class Village : MonoBehaviour
     [SerializeField] public int costToBuild = 1;
     [SerializeField] private int costRisePerNewHouse = 1;
     [SerializeField] private int gainPerHouse = 2;
-    public GameObject player;
+    [SerializeField] private GameObject player;
+    private bool isInVillage;
 
-    private void OnTriggerStay2D(Collider2D col)
+    private void Update()
     {
-        if (col.tag == "Player" && Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && isInVillage && player.GetComponent<Player>().wood >= costToBuild)
         {
-            if (player.GetComponent<Player>().wood >= costToBuild)
-            {
-                BuildHouse();
-            }
+            BuildHouse();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            isInVillage = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            isInVillage = false;
         }
     }
 
