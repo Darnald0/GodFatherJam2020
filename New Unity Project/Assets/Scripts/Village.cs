@@ -10,6 +10,17 @@ public class Village : MonoBehaviour
     [SerializeField] private int gainPerHouse = 2;
     public GameObject player;
 
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "Player" && Input.GetKeyDown(KeyCode.S))
+        {
+            if (player.GetComponent<Player>().wood >= costToBuild)
+            {
+                BuildHouse();
+            }
+        }
+    }
+
     public void BuildHouse()
     {
         player.GetComponent<Player>().wood -= costToBuild;
