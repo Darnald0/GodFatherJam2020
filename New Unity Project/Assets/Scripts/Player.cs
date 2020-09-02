@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int wood = 0;
+    public int wood = 0;
 
     // Start is called before the first frame update
     void Start()
