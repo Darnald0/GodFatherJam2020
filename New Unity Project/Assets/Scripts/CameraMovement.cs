@@ -13,7 +13,6 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         xOffset = player.transform.position.x - transform.position.x;
-        //Debug.Log(xOffset);
         if (xOffset < -camXMovment)
         {
             transform.position = new Vector3(transform.position.x + xOffset + camXMovment, transform.position.y, transform.position.z);
