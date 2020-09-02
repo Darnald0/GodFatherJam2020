@@ -16,7 +16,10 @@ public class Tree : MonoBehaviour
     [SerializeField] private int woodsGiven = 2;
     [SerializeField] private GameObject spriteBarTree = null;
     [SerializeField] private GameObject spriteBarWhite = null;
-    
+
+    public KeyCode touche = KeyCode.None;
+
+
 
     private void Start()
     {
