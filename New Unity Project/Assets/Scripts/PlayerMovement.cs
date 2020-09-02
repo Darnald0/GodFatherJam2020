@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        Debug.Log(Camera.main.transform.localScale);
     }
 
     // Update is called once per frame
