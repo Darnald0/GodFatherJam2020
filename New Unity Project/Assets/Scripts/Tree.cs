@@ -9,6 +9,8 @@ public class Tree : MonoBehaviour
     private bool isIn = false;
     private Player player = null;
 
+    private float spriteBarTreeFloat = 0f;
+
     private float timeToGoUp = 0f;
     private float distToGoUp = 0f;
 
@@ -17,13 +19,10 @@ public class Tree : MonoBehaviour
     [SerializeField] private GameObject spriteBarTree = null;
     [SerializeField] private GameObject spriteBarWhite = null;
 
-    public KeyCode touche = KeyCode.None;
-
-
-
     private void Start()
     {
         realTimeToDamage = timeToDamage;
+        spriteBarTreeFloat = spriteBarTree.transform.localScale.x;
     }
 
     private void Update()
@@ -33,7 +32,10 @@ public class Tree : MonoBehaviour
             if (Input.GetKey(KeyCode.E) && realTimeToDamage > 0f && health > 1)
             {
                 realTimeToDamage -= Time.deltaTime;
-                spriteBarTree.transform.localPosition = new Vector3(spriteBarTree.transform.localPosition.x, spriteBarTree.transform.localPosition.y - (spriteBarTree.transform.localScale.y / timeToDamage) * Time.deltaTime, spriteBarTree.transform.localPosition.z);
+
+                spriteBarTree.transform.localScale = new Vector3(spriteBarTree.transform.localScale.x - (spriteBarTreeFloat / timeToDamage) * Time.deltaTime, spriteBarTree.transform.localScale.y, spriteBarTree.transform.localScale.z);
+                spriteBarTree.transform.localPosition = new Vector3(spriteBarTree.transform.localPosition.x - ((spriteBarTreeFloat / timeToDamage) * Time.deltaTime) / 2, spriteBarTree.transform.localPosition.y, spriteBarTree.transform.localPosition.z);
+                //spriteBarTree.transform.localPosition = new Vector3(spriteBarTree.transform.localPosition.x, spriteBarTree.transform.localPosition.y - (spriteBarTree.transform.localScale.y / timeToDamage) * Time.deltaTime, spriteBarTree.transform.localPosition.z);
             }
             else if (realTimeToDamage <= 0f)
             {
@@ -41,7 +43,8 @@ public class Tree : MonoBehaviour
                 health--;
                 player.wood += woodsGiven;
                 transform.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
-                spriteBarTree.transform.localPosition = new Vector3(spriteBarTree.transform.localPosition.x, 0.3f, spriteBarTree.transform.localPosition.z);
+                spriteBarTree.transform.localScale = new Vector3(spriteBarTreeFloat, spriteBarTree.transform.localScale.y, spriteBarTree.transform.localScale.z);
+                spriteBarTree.transform.localPosition = new Vector3(0f, spriteBarTree.transform.localPosition.y, spriteBarTree.transform.localPosition.z);
             }
         }
         else
@@ -49,12 +52,14 @@ public class Tree : MonoBehaviour
             if (realTimeToDamage < timeToDamage && health > 1)
             {
                 realTimeToDamage += Time.deltaTime;
-                spriteBarTree.transform.localPosition = new Vector3(spriteBarTree.transform.localPosition.x, spriteBarTree.transform.localPosition.y - ( distToGoUp / timeToGoUp) * Time.deltaTime, spriteBarTree.transform.localPosition.z);
+                spriteBarTree.transform.localScale = new Vector3(spriteBarTree.transform.localScale.x + (spriteBarTreeFloat / timeToDamage) * Time.deltaTime, spriteBarTree.transform.localScale.y, spriteBarTree.transform.localScale.z);
+                spriteBarTree.transform.localPosition = new Vector3(spriteBarTree.transform.localPosition.x +((spriteBarTreeFloat / timeToDamage) * Time.deltaTime) / 2, spriteBarTree.transform.localPosition.y, spriteBarTree.transform.localPosition.z);
             }
             else if (realTimeToDamage > timeToDamage)
             {
                 realTimeToDamage = timeToDamage;
-                spriteBarTree.transform.localPosition = new Vector3(spriteBarTree.transform.localPosition.x, 0.3f, spriteBarTree.transform.localPosition.z);
+                spriteBarTree.transform.localScale = new Vector3(spriteBarTreeFloat, spriteBarTree.transform.localScale.y, spriteBarTree.transform.localScale.z);
+                spriteBarTree.transform.localPosition = new Vector3(0f, spriteBarTree.transform.localPosition.y, spriteBarTree.transform.localPosition.z);
             }
         }
 
@@ -64,9 +69,9 @@ public class Tree : MonoBehaviour
         }
     }
 
-    public void EnnemyAttack()
+    public void EnnemyAttack(int damage)
     {
-
+        health -= damage;
     }
 
     public void PassDay()
