@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int wood = 0;
+    public int wood = 0;
+    [SerializeField] private GameObject village;
 
     // Start is called before the first frame update
     void Start()
@@ -16,5 +17,16 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.collider.tag == "Village" && Input.GetKeyDown(KeyCode.S))
+        {
+           if(wood >= village.GetComponent<Village>().costToBuild)
+            {
+                village.GetComponent<Village>().BuildHouse();
+            }
+        }
     }
 }
