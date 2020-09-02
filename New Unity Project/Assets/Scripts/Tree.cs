@@ -97,7 +97,5 @@ public class Tree : MonoBehaviour
         isIn = false;
         timeToGoUp = timeToDamage - realTimeToDamage;
         distToGoUp = spriteBarTree.transform.localPosition.y - 0.3f;
-        //realTimeToDamage = timeToDamage;
-        //spriteBarTree.transform.localPosition = new Vector3(spriteBarTree.transform.localPosition.x, 0.3f, spriteBarTree.transform.localPosition.z);
     }
 }
