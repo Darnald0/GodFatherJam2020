@@ -8,7 +8,7 @@ public class Village : MonoBehaviour
     [SerializeField] public int costToBuild = 1;
     [SerializeField] private int costRisePerNewHouse = 1;
     [SerializeField] private int gainPerHouse = 2;
-    public GameObject player;
+    [SerializeField] private GameObject player;
     private bool isInVillage;
 
     private void Update()

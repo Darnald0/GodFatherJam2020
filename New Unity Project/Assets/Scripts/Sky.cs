@@ -8,14 +8,15 @@ public class Sky : MonoBehaviour
     private float timer = 0.0f;
     private int seconds = 0;
     public bool isNight = false;
+    public int numberOfDay = 1;
     [SerializeField] private float timeInSecondToPassTheDay;
     [SerializeField] private Color dayColor;
     [SerializeField] private Color nightColor;
     [SerializeField] private GameObject fade;
+    [SerializeField] private GameObject village;
 
     private SpriteRenderer sr;
     private Image fadeImage;
-    public GameObject village;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,7 @@ public class Sky : MonoBehaviour
                 StartCoroutine(FadeImageDay());
                 village.GetComponent<Village>().GainPassif();
                 isNight = false;
+                numberOfDay++;
             }
             timer = 0;
         }
