@@ -9,14 +9,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float speed = 40f;
 
-    // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        Debug.Log(Camera.main.transform.localScale);
     }
 
-    // Update is called once per frame
     void Update()
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
