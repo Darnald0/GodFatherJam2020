@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    [Header("Change This")]
     [SerializeField] private GameObject player = null;
     [Space]
     [SerializeField] private float camXMovment = 0f;

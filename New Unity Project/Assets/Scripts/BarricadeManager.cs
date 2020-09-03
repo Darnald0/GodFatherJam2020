@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BarricadeManager : MonoBehaviour
 {
+    [Header("Do Not Touch")]
     public List<Barricade> barricades = new List<Barricade>();
 
     public void DoubleBarricadeHealth()
