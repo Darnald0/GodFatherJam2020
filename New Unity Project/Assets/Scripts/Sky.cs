@@ -25,6 +25,7 @@ public class Sky : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         soundScript = GetComponent<PlayMultipleSound>();
+        soundScript.PlaySound(TYPE_AUDIO.MusicDay);
     }
 
     void Update()
@@ -50,7 +51,7 @@ public class Sky : MonoBehaviour
         }
         else if (isNight)
         {
-            soundScript.PlaySound(TYPE_AUDIO.MusicWin);
+            soundScript.PlaySound(TYPE_AUDIO.MusicDay);
             StartCoroutine(FadeImageDay());
             isNight = false;
             numberOfDay++;
