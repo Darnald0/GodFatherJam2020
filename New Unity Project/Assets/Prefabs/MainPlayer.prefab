@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 1118153350292607614}
   - component: {fileID: 1118153350292607611}
   - component: {fileID: 1118153350292607612}
+  - component: {fileID: 1177579310152256053}
   m_Layer: 0
   m_Name: MainPlayer
   m_TagString: Player
@@ -256,7 +257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffaf06545ae52ef449791fdffea1c1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 40
+  speed: 30
+  runSpeed: 40
 --- !u!114 &1118153350292607612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,13 +271,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3aba4adb6c1d2744a73396411793521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barricadePrefab: {fileID: 2112395523179616158, guid: b402205464bc1054da5694202bd550e2,
-    type: 3}
-  barricadeManager: {fileID: 0}
   wood: 0
   buildBarricade: 0
   isBuilding: 0
   isStayingIdol: 0
+  isFocusingEnemy: 0
+  barricadePrefab: {fileID: 2112395523179616158, guid: b402205464bc1054da5694202bd550e2,
+    type: 3}
+  barricadeManager: {fileID: 0}
+  timeToAttack: 2
+--- !u!95 &1177579310152256053
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2293423649885452812}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9d96cbf77242e214a93c02767430c76b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3051798235873462136
 GameObject:
   m_ObjectHideFlags: 0
