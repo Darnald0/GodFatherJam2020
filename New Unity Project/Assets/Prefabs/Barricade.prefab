@@ -101,8 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCreate: 0
   nbEnemy: 0
-  health: 10
-  costCreate: 0
+  health: 20
+  costCreate: 1
   timeToCreate: 2
   spriteLifeBar: {fileID: 7576438209116371050}
   spriteLifeBarWhite: {fileID: 7815919143688990628}
