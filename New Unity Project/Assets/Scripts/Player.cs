@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,17 +10,35 @@ public class Player : MonoBehaviour
     public bool buildBarricade = false;
     public bool isBuilding = false;
     public bool isStayingIdol = false;
+    public bool isFocusingEnemy = false;
 
     [Header("Change This")]
     [SerializeField] private GameObject barricadePrefab = null;
     public BarricadeManager barricadeManager = null;
+    public float timeToAttack = 1f;
+
+    private float timerAttack = 0f;
+
+    private void Start()
+    {
+        timerAttack = timeToAttack;
+    }
 
     void Update()
     {
+        if (timeToAttack > 0f)
+            timeToAttack -= Time.deltaTime;
+
         if (!buildBarricade && !isStayingIdol && Input.GetKeyDown(KeyCode.S))
         {
             BuildBarricade();
         }
+    }
+
+    public void ResetAttack()
+    {
+        timeToAttack = timerAttack;
+        isFocusingEnemy = false;
     }
 
     private void BuildBarricade()
