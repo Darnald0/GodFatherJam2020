@@ -22,7 +22,7 @@ public class TreeManager : MonoBehaviour
             Vector3 posTree = new Vector3(trees[i].gameObject.transform.position.x, 0f, 0f);
             Vector3 posPlayer = new Vector3(player.transform.position.x, 0f, 0f);
 
-            if (Vector3.Distance(posPlayer, posTree) <= 4f)
+            if (trees[i].nbEnemy > 0 || Vector3.Distance(posPlayer, posTree) <= 4f)
             {
                 trees[i].ShowLife(true);
             }

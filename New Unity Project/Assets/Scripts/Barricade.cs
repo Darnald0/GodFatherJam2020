@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Barricade : MonoBehaviour
 {
+    private int nbEnemy = 0;
     private Player player = null;
     private bool canBuild = true;
     private float timeCreate = -1f;
@@ -77,6 +79,9 @@ public class Barricade : MonoBehaviour
             timeCreate = -1f;
             player.isBuilding = false;
         }
+
+        if (health == 0 && isCreate)
+            Destroy(gameObject);
     }
 
     public void AttackBarricade(int damage)
@@ -85,17 +90,29 @@ public class Barricade : MonoBehaviour
 
         spriteLifeBar.transform.localScale = new Vector3(spriteLifeBar.transform.localScale.x - (lifeBarFloat / maxHealth) * damage, spriteLifeBar.transform.localScale.y, spriteLifeBar.transform.localScale.z);
         spriteLifeBar.transform.localPosition = new Vector3(spriteLifeBar.transform.localPosition.x - ((lifeBarFloat / maxHealth) * damage) / 2, spriteLifeBar.transform.localPosition.y, spriteLifeBar.transform.localPosition.z);
-        
+    }
+
+    public Barricade IsAlive()
+    {
         if (health <= 0)
-            Destroy(gameObject);
+            return null;
+        else
+            return this;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Ennemy")
-            return;
-
-        if (!isCreate)
+        if (collision.tag == "Enemy" && isCreate)
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            if (enemy.barricade == null && enemy.tree == null)
+            {
+                enemy.barricade = this;
+                collision.gameObject.transform.position = new Vector2(collision.gameObject.transform.position.x + (enemy.left ? 1f : -1f) * (float)nbEnemy / 4f, collision.gameObject.transform.position.y);
+                nbEnemy++;
+            }
+        }
+        else if (!isCreate)
         {
             canBuild = false;
             Color grey = new Vector4(Color.grey.r, Color.grey.g, Color.grey.b, 0.2f);

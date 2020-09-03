@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     private void BuildBarricade()
     {
         GameObject obj = Instantiate(barricadePrefab, transform) as GameObject;
-        obj.transform.localPosition += new Vector3(4f, 1.5f);
+        obj.transform.localPosition += new Vector3(-4f, 1.5f);
         obj.transform.localScale = new Vector3(2f, 2f, 1f);
         buildBarricade = true;
     }
