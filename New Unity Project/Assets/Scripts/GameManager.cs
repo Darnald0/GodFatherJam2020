@@ -5,13 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject instructionPanel;
+    public GameObject startGamePanel;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+          SceneManager.LoadScene("Game");
+
+        }
+    }
     public void QuitGame()
     {
         Application.Quit();
     }
 
-    public void StartGame()
+    public void Instruction()
     {
-        SceneManager.LoadScene("Game");
+        instructionPanel.SetActive(true);
+    }
+
+    public void Return()
+    {
+        instructionPanel.SetActive(false);
+    }
+
+    public void StartGamePanel()
+    {
+        startGamePanel.SetActive(true);
     }
 }
