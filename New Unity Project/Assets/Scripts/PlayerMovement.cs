@@ -38,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!player.isBuilding && !player.isStayingIdol)
             rig.velocity = new Vector2(Horizontal * 10f * speed * Time.fixedDeltaTime, rig.velocity.y);
+        else
+        {
+            if (rig.velocity.x > 0.1f || rig.velocity.x < -0.1f)
+                rig.velocity = new Vector2(0f, rig.velocity.y);
+        }
     }
 
     private void Flip()

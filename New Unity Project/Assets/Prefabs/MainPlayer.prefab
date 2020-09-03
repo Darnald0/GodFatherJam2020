@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 1118153350292607612}
   m_Layer: 0
   m_Name: MainPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,6 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barricadePrefab: {fileID: 2112395523179616158, guid: b402205464bc1054da5694202bd550e2,
     type: 3}
+  barricadeManager: {fileID: 0}
   wood: 0
   buildBarricade: 0
   isBuilding: 0

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private GameObject barricadePrefab = null;
-    public BarricadeManager barricadeManager = null;
-
+    [Header("Do Not Touch")]
     public int wood = 0;
     public bool buildBarricade = false;
     public bool isBuilding = false;
     public bool isStayingIdol = false;
+
+    [Header("Change This")]
+    [SerializeField] private GameObject barricadePrefab = null;
+    public BarricadeManager barricadeManager = null;
 
     void Update()
     {
@@ -23,7 +25,7 @@ public class Player : MonoBehaviour
     private void BuildBarricade()
     {
         GameObject obj = Instantiate(barricadePrefab, transform) as GameObject;
-        obj.transform.localPosition += new Vector3(4f, 1.5f);
+        obj.transform.localPosition += new Vector3(-4f, 1.5f);
         obj.transform.localScale = new Vector3(2f, 2f, 1f);
         buildBarricade = true;
     }

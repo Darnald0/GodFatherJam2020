@@ -16,6 +16,7 @@ public class Sky : MonoBehaviour
     [SerializeField] private Village villageScript;
     [SerializeField] private Idol idol;
     [SerializeField] private TreeManager treeManager;
+    [SerializeField] private EnemyManager enemyManager;
     private SpriteRenderer sr;
 
     void Start()
@@ -40,7 +41,7 @@ public class Sky : MonoBehaviour
         {
             StartCoroutine(FadeImageNight());
             isNight = true;
-            idol.CheckIfEnoughOffering(idol.minimalNumberOfWoodNeeded, idol.numberOfWoodOffered);
+            enemyManager.PassNight();
         }
         else if (isNight)
         {
@@ -49,9 +50,9 @@ public class Sky : MonoBehaviour
             villageScript.ResetPassifGain();
             isNight = false;
             numberOfDay++;
-            idol.numberOfWoodOffered = 0;
             idol.CheckDay();
             treeManager.PassDay();
+            enemyManager.PassDay();
         }
         timer = 0;
     }
