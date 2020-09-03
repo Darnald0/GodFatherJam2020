@@ -24,6 +24,7 @@ public class Idol : MonoBehaviour
     private bool offeringState = false;
     private int offeringIndex = 0;
 
+    PlayMultipleSound soundScript;
     Player playerScript;
     Sky skyScript;
     Village villageScript;
@@ -32,6 +33,7 @@ public class Idol : MonoBehaviour
 
     private void Start()
     {
+        soundScript = GetComponent<PlayMultipleSound>();
         godVoiceDisplay = godVoice.GetComponent<Text>();
         barricadeManagerScript = barricadeManager.GetComponent<BarricadeManager>();
         playerScript = player.GetComponent<Player>();
@@ -196,6 +198,7 @@ public class Idol : MonoBehaviour
 
     private void Debuff()
     {
+        soundScript.PlaySound(TYPE_AUDIO.Malus);
         int randomDebuff = Random.Range(1, 5);
         switch (randomDebuff)
         {
@@ -237,6 +240,7 @@ public class Idol : MonoBehaviour
 
     public void Buff(int numberOfOffering)
     {
+        soundScript.PlaySound(TYPE_AUDIO.Bonus);
         int randomBuff;
         switch (numberOfOffering)
         {

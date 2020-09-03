@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7199460873492354550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2200956589230234068}
+  - component: {fileID: 8981639481045234050}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2200956589230234068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199460873492354550}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8981639481045234050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199460873492354550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6cc3fa802d7b747aff464305dc3a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsMusique:
+  - audioFor: 1
+    audio: {fileID: 8300000, guid: c92ac9b67e2344f4e9e751b8e5fe669a, type: 3}
+    volume: 0.5
+    loop: 1
+    playOnAwake: 0
+  - audioFor: 2
+    audio: {fileID: 8300000, guid: b8cc722b46dea1045918d4de90ead8ec, type: 3}
+    volume: 0.5
+    loop: 1
+    playOnAwake: 0
+  - audioFor: 5
+    audio: {fileID: 8300000, guid: cee1c7cafd9a4de41872e1f399519680, type: 3}
+    volume: 0.5
+    loop: 1
+    playOnAwake: 0
+  - audioFor: 4
+    audio: {fileID: 8300000, guid: 944f4266c76aed6439e6982282cf314d, type: 3}
+    volume: 0.5
+    loop: 1
+    playOnAwake: 0
+  soundsSfx:
+  - audioFor: 6
+    audio: {fileID: 8300000, guid: 85771b03a7ce59947b8ad2a7128d3568, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+  - audioFor: 7
+    audio: {fileID: 8300000, guid: a2a3a4ec92d482342a3d15e3f188da2e, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+  - audioFor: 10
+    audio: {fileID: 8300000, guid: 6eecc7d5723ab2841965ddfad4e10859, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+  - audioFor: 8
+    audio: {fileID: 8300000, guid: d1d47f288dc899e4885d5e9d91491550, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+  - audioFor: 13
+    audio: {fileID: 8300000, guid: 1b47a6afbfa33ca4db9b840817256dbd, type: 3}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+  - audioFor: 11
+    audio: {fileID: 8300000, guid: ce67db619a353e0419522652c21dc05e, type: 3}
+    volume: 1
+    loop: 1
+    playOnAwake: 0
+  - audioFor: 9
+    audio: {fileID: 8300000, guid: d2bf38c72dc0f4440b674a23e2be0b05, type: 3}
+    volume: 1
+    loop: 1
+    playOnAwake: 0
+  - audioFor: 12
+    audio: {fileID: 8300000, guid: 9f875100366aa354abad61a2b626a5e8, type: 3}
+    volume: 0
+    loop: 1
+    playOnAwake: 0
+  activeMusic: 1
+  activeSfx: 1
+  mainMixerAudio: {fileID: 0}
+  sliderVolumeMusique: {fileID: 0}
+  sliderVolumeSfx: {fileID: 0}

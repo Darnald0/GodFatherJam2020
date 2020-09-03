@@ -14,8 +14,11 @@ public class Village : MonoBehaviour
     private int baseGainPerHouse;
     private bool isInVillage;
 
+    PlayOneSound soundScript;
+
     private void Start()
     {
+        soundScript = GetComponent<PlayOneSound>();
         baseGainPerHouse = gainPerHouse;
     }
 
@@ -45,6 +48,7 @@ public class Village : MonoBehaviour
 
     public void BuildHouse()
     {
+        soundScript.PlaySound();
         player.wood -= costToBuild;
         houseNumber++;
         costToBuild += costRisePerNewHouse;
@@ -68,6 +72,7 @@ public class Village : MonoBehaviour
 
     public void PlusOneVillager()
     {
+        soundScript.PlaySound();
         houseNumber++;
     }
 

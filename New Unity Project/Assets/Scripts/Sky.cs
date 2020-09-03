@@ -10,18 +10,21 @@ public class Sky : MonoBehaviour
     public bool isNight = false;
     public int numberOfDay = 1;
     [SerializeField] private float timeInSecondToPassTheDay;
-    [SerializeField] private Color dayColor;
-    [SerializeField] private Color nightColor;
+    [SerializeField] private Sprite dayColor;
+    [SerializeField] private Sprite nightColor;
     [SerializeField] private Image fadeImage;
     [SerializeField] private Village villageScript;
     [SerializeField] private Idol idol;
     [SerializeField] private TreeManager treeManager;
     [SerializeField] private EnemyManager enemyManager;
     private SpriteRenderer sr;
+    PlayMultipleSound soundScript;
+    
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        soundScript = GetComponent<PlayMultipleSound>();
     }
 
     void Update()
@@ -39,6 +42,7 @@ public class Sky : MonoBehaviour
     {
         if (!isNight)
         {
+            soundScript.PlaySound(TYPE_AUDIO.MusicNight);
             StartCoroutine(FadeImageNight());
             isNight = true;
             enemyManager.PassNight();
@@ -46,6 +50,7 @@ public class Sky : MonoBehaviour
         }
         else if (isNight)
         {
+            soundScript.PlaySound(TYPE_AUDIO.MusicWin);
             StartCoroutine(FadeImageDay());
             isNight = false;
             numberOfDay++;
@@ -68,7 +73,7 @@ public class Sky : MonoBehaviour
             yield return null;
         }
 
-        sr.color = nightColor;
+        sr.sprite = nightColor;
 
         tempColor = fadeImage.color;
         for (float j = 1; j >= 0.2f; j -= 0.01f)
@@ -89,7 +94,7 @@ public class Sky : MonoBehaviour
             yield return null;
         }
 
-        sr.color = dayColor;
+        sr.sprite = dayColor;
 
         tempColor = fadeImage.color;
         for (float j = 1; j >= 0; j -= 0.01f)
