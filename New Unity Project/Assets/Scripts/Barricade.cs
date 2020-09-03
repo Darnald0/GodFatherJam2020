@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class Barricade : MonoBehaviour
@@ -32,12 +31,18 @@ public class Barricade : MonoBehaviour
 
     private void Update()
     {
-        if (!isCreate && timeCreate == -1f && player.buildBarricade)
+        if (!isCreate && timeCreate == -1f && timeCreate == -1f && player.isStayingIdol)
+        {
+            player.buildBarricade = false;
+            Destroy(gameObject);
+        }
+
+        if (!isCreate && timeCreate == -1f && timeCreate == -1f)
         {
             transform.position = new Vector3(player.transform.position.x + 2f * player.transform.localScale.x, transform.position.y);
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && !isCreate)
+        if (Input.GetKeyDown(KeyCode.A) && !isCreate)
         {
             if (player.buildBarricade && costCreate <= player.wood && canBuild && timeCreate == -1f)
             {
@@ -47,6 +52,8 @@ public class Barricade : MonoBehaviour
                 Destroy(GetComponent<Rigidbody2D>());
                 player.buildBarricade = false;
                 timeCreate = timeToCreate;
+                player.isBuilding = true;
+                // Play anim here
             }
             else if (player.buildBarricade && (costCreate > player.wood || !canBuild) && timeCreate == -1f)
             {
@@ -65,6 +72,7 @@ public class Barricade : MonoBehaviour
         {
             isCreate = true;
             timeCreate = -1f;
+            player.isBuilding = false;
         }
     }
 

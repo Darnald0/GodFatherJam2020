@@ -5107,7 +5107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58141aba937a9644ad0b38494733fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToDamage: 5
+  timeToDamage: 2
   woodsGiven: 2
   spriteBarTree: {fileID: 519516359231029851}
   spriteBarWhite: {fileID: 519516359366871426}

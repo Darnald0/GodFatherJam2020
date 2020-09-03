@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float atkPerSecond;
     private float timer;
     private bool left;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= atkPerSecond)
         {
-            EnemyAttack();
+            EnemyAttack(10);
             timer = 0;
         }
     }

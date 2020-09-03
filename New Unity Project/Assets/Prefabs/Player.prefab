@@ -111,6 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3aba4adb6c1d2744a73396411793521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barricadePrefab: {fileID: 2112395523179616158, guid: b402205464bc1054da5694202bd550e2,
+    type: 3}
   wood: 0
   buildBarricade: 0
 --- !u!50 &8698053453069127541

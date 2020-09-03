@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75328b5be13ea6f4c897271fa62b449f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfHouse: {fileID: 1120410309}
+  numberOfHouseToDisplay: {fileID: 1120410310}
   costToBuild: 1
   costRisePerNewHouse: 1
   player: {fileID: 0}

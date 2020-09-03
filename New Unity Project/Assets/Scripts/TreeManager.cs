@@ -8,7 +8,7 @@ public class TreeManager : MonoBehaviour
 
     void Start()
     {
-        trees = FindObjectsOfType<Tree>();
+        trees = GetComponentsInChildren<Tree>();
     }
 
     void Update()

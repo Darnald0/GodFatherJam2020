@@ -12,23 +12,17 @@ public class Sky : MonoBehaviour
     [SerializeField] private float timeInSecondToPassTheDay;
     [SerializeField] private Color dayColor;
     [SerializeField] private Color nightColor;
-    [SerializeField] private GameObject fade;
-    [SerializeField] private GameObject village;
-    [SerializeField] private GameObject idol;
+    [SerializeField] private Image fadeImage;
+    [SerializeField] private Village villageScript;
+    [SerializeField] private Idol idol;
+    [SerializeField] private TreeManager treeManager;
     private SpriteRenderer sr;
-    private Image fadeImage;
 
-    Village villageScript;
-    // Start is called before the first frame update
     void Start()
     {
-        
-        fadeImage = fade.GetComponent<Image>();
         sr = GetComponent<SpriteRenderer>();
-        villageScript = village.GetComponent<Village>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
@@ -36,22 +30,28 @@ public class Sky : MonoBehaviour
 
         if (seconds == timeInSecondToPassTheDay)
         {
-            if (!isNight)
-            {
-                StartCoroutine(FadeImageNight());
-                isNight = true;
-            }
-            else if (isNight)
-            {
-                StartCoroutine(FadeImageDay());
-                villageScript.GainPassif();
-                villageScript.ResetPassifGain(); 
-                isNight = false;
-                numberOfDay++;
-                idol.GetComponent<Idol>().CheckDay();
-            }
-            timer = 0;
+            PassDay();
         }
+    }
+
+    private void PassDay()
+    {
+        if (!isNight)
+        {
+            StartCoroutine(FadeImageNight());
+            isNight = true;
+        }
+        else if (isNight)
+        {
+            StartCoroutine(FadeImageDay());
+            villageScript.GainPassif();
+            villageScript.ResetPassifGain();
+            isNight = false;
+            numberOfDay++;
+            idol.CheckDay();
+            treeManager.PassDay();
+        }
+        timer = 0;
     }
 
     IEnumerator FadeImageNight()

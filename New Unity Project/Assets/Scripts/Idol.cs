@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Idol : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    [SerializeField] private Player player;
     [SerializeField] private GameObject sky;
     [SerializeField] private GameObject village;
     [SerializeField] private GameObject numberOfOfferingNeeded;
@@ -34,10 +34,10 @@ public class Idol : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S) && !alreadyMadeAnOffering && !offeringState && isInIdol)
+        if (Input.GetKeyDown(KeyCode.E) && !alreadyMadeAnOffering && !offeringState && isInIdol)
         {
             offeringNumber.SetActive(true);
-            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionX;
+            player.isStayingIdol = true;
             offeringState = true;
         }
 
@@ -68,7 +68,7 @@ public class Idol : MonoBehaviour
                     case 0:
                         offeringNumber.SetActive(false);
                         offeringState = false;
-                        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        
                         break;
                     case 1:
                         if(playerScript.wood >= 3)
@@ -77,7 +77,7 @@ public class Idol : MonoBehaviour
                             alreadyMadeAnOffering = true;
                             offeringNumber.SetActive(false);
                             offeringState = false;
-                            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                            
                         }
                         break;
                     case 2:
@@ -87,7 +87,7 @@ public class Idol : MonoBehaviour
                             alreadyMadeAnOffering = true;
                             offeringNumber.SetActive(false);
                             offeringState = false;
-                            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                            
                         }
                         break;
                     case 3:
@@ -97,13 +97,14 @@ public class Idol : MonoBehaviour
                             alreadyMadeAnOffering = true;
                             offeringNumber.SetActive(false);
                             offeringState = false;
-                            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                            
                         }
                         break;
                     default:
                         Debug.Log("Offering Error");
                         break;
                 }
+                player.isStayingIdol = false;
             }
         }
     }
