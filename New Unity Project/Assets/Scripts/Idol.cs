@@ -1,33 +1,116 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Idol : MonoBehaviour
 {
-    [SerializeField] private int numberOfWoodNeeded;
-    [SerializeField] private int numberOfDayWithoutOfferingBeforeDisaster = 3;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject sky;
+    [SerializeField] private GameObject village;
+    [SerializeField] private GameObject numberOfOfferingNeeded;
+    [SerializeField] private GameObject offeringNumber;
+    private Text numberOfOfferingNeededDisplay;
+    private int minimalNumberOfWoodNeeded;
     private bool isInIdol;
+    private int currentDay;
+    private int numberOfWoodOffered;
+    private bool alreadyMadeAnOffering = false;
+    private bool offeringState = false;
+    private int offeringIndex = 0;
+    [SerializeField] private GameObject[] arrayOffering;
+
+    Player playerScript;
+    Sky skyScript;
+    Village villageScript;
+
+    private void Start()
+    {
+        playerScript = player.GetComponent<Player>();
+        skyScript = sky.GetComponent<Sky>();
+        villageScript = village.GetComponent<Village>();
+        numberOfOfferingNeededDisplay = numberOfOfferingNeeded.GetComponent<Text>();
+    }
 
     void Update()
     {
-        //malus
-        if (numberOfDayWithoutOfferingBeforeDisaster == sky.GetComponent<Sky>().numberOfDay)
+        if (Input.GetKeyDown(KeyCode.S) && !alreadyMadeAnOffering && !offeringState && isInIdol)
         {
-            Debug.Log("disaster");
+            offeringNumber.SetActive(true);
+            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionX;
+            offeringState = true;
         }
 
-        //bonus
-        if(Input.GetKeyDown(KeyCode.S) && player.GetComponent<Player>().wood >= numberOfWoodNeeded)
+        if (offeringState)
         {
-            Debug.Log("offering");
+            arrayOffering[offeringIndex].GetComponent<Text>().fontStyle = FontStyle.Bold;
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (offeringIndex > 0)
+                {
+                    arrayOffering[offeringIndex].GetComponent<Text>().fontStyle = FontStyle.Normal;
+                    offeringIndex--;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                if (offeringIndex < 3)
+                {
+                    arrayOffering[offeringIndex].GetComponent<Text>().fontStyle = FontStyle.Normal;
+                    offeringIndex++;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                switch(offeringIndex)
+                {
+                    case 0:
+                        offeringNumber.SetActive(false);
+                        offeringState = false;
+                        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        break;
+                    case 1:
+                        if(playerScript.wood >= 3)
+                        {
+                            Buff(offeringIndex);
+                            alreadyMadeAnOffering = true;
+                            offeringNumber.SetActive(false);
+                            offeringState = false;
+                            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        }
+                        break;
+                    case 2:
+                        if(playerScript.wood >= 6)
+                        {
+                            Buff(offeringIndex);
+                            alreadyMadeAnOffering = true;
+                            offeringNumber.SetActive(false);
+                            offeringState = false;
+                            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        }
+                        break;
+                    case 3:
+                        if(playerScript.wood >= 9)
+                        {
+                            Buff(offeringIndex);
+                            alreadyMadeAnOffering = true;
+                            offeringNumber.SetActive(false);
+                            offeringState = false;
+                            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        }
+                        break;
+                    default:
+                        Debug.Log("Offering Error");
+                        break;
+                }
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Player")
+        if (col.tag == "Player")
         {
             isInIdol = true;
         }
@@ -35,9 +118,137 @@ public class Idol : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if(col.tag == "Player")
+        if (col.tag == "Player")
         {
             isInIdol = false;
+        }
+    }
+
+    public void CheckDay()
+    {
+        alreadyMadeAnOffering = false;
+        currentDay = sky.GetComponent<Sky>().numberOfDay;
+
+        switch (currentDay)
+        {
+            case 1:
+                numberOfWoodOffered = 0;
+                break;
+
+            case 2:
+                numberOfWoodOffered = 0;
+                minimalNumberOfWoodNeeded = 2;
+                numberOfOfferingNeededDisplay.text = minimalNumberOfWoodNeeded.ToString();
+                if (numberOfWoodOffered < minimalNumberOfWoodNeeded)
+                {
+                    Debuff();
+                }
+                break;
+
+            case 3:
+                numberOfWoodOffered = 0;
+                minimalNumberOfWoodNeeded = 3;
+                numberOfOfferingNeededDisplay.text = minimalNumberOfWoodNeeded.ToString();
+                if (numberOfWoodOffered < minimalNumberOfWoodNeeded)
+                {
+                    Debuff();
+                }
+                break;
+
+            case 4:
+                numberOfWoodOffered = 0;
+                minimalNumberOfWoodNeeded = 4;
+                numberOfOfferingNeededDisplay.text = minimalNumberOfWoodNeeded.ToString();
+                if (numberOfWoodOffered < minimalNumberOfWoodNeeded)
+                {
+                    Debuff();
+                }
+                break;
+            case 5:
+                numberOfWoodOffered = 0;
+                minimalNumberOfWoodNeeded = 5;
+                numberOfOfferingNeededDisplay.text = minimalNumberOfWoodNeeded.ToString();
+                if (numberOfWoodOffered < minimalNumberOfWoodNeeded)
+                {
+                    Debuff();
+                }
+                break;
+            case 6:
+                Debug.Log("gg");
+                break;
+        }
+    }
+
+    private void Debuff()
+    {
+        int randomDebuff = Random.Range(1, 5);
+        switch (randomDebuff)
+        {
+            case 1:
+                playerScript.HalfWood();
+                break;
+            case 2:
+                //one tree in the list of tree = 1hp
+                break;
+            case 3:
+                //one trre in the list of tree = 0hp
+                break;
+            case 4:
+                villageScript.DestroyAHouse();
+                break;
+            case 5:
+                villageScript.HalfPassivGain();
+                break;
+            default:
+                Debug.Log("Debbuff Error");
+                break;
+        }
+    }
+
+    public void Buff(int numberOfOffering)
+    {
+        int randomBuff;
+        switch (numberOfOffering)
+        {
+            case 1:
+                randomBuff = Random.Range(1, 2);
+                if (randomBuff == 1)
+                {
+                    villageScript.PlusOneVillager();
+                }
+                else
+                {
+                    playerScript.DoubleWood();
+                }
+
+                break;
+            case 2:
+                randomBuff = Random.Range(1, 3);
+                if (randomBuff == 1)
+                {
+                    //double tree life
+                }
+                else if (randomBuff == 2)
+                {
+                    villageScript.DoublePassifGain();
+                }
+                else
+                {
+                    //+1 tree in tree list
+                }
+
+                break;
+            case 3:
+                randomBuff = Random.Range(1, 2);
+                if (randomBuff == 1)
+                {
+                    //barricade health x2
+                }
+                else
+                {
+                    //cut wave in half
+                }
+                break;
         }
     }
 }

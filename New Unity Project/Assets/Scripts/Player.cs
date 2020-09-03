@@ -24,5 +24,13 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void HalfWood()
+    {
+        wood = wood / 2;
+    }
 
+    public void DoubleWood()
+    {
+        wood = wood * 2;
+    }
 }
