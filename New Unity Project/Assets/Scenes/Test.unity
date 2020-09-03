@@ -2432,6 +2432,11 @@ PrefabInstance:
       propertyPath: barricadeManager
       value: 
       objectReference: {fileID: 1207720125}
+    - target: {fileID: 1118153350292607612, guid: e2bbe646359064f4bb0e142a6650a6d3,
+        type: 3}
+      propertyPath: timeToAttack
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2293423649885452812, guid: e2bbe646359064f4bb0e142a6650a6d3,
         type: 3}
       propertyPath: m_Name
