@@ -27,9 +27,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Horizontal = Input.GetAxisRaw("Horizontal");
 
-            if (Horizontal > 0 && !rightFace)
+            if (Horizontal < 0 && !rightFace)
                 Flip();
-            else if (Horizontal < 0 && rightFace)
+            else if (Horizontal > 0 && rightFace)
                 Flip();
         }
     }

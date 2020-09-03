@@ -47,7 +47,7 @@ public class Barricade : MonoBehaviour
 
         if (!isCreate && timeCreate == -1f && timeCreate == -1f)
         {
-            transform.position = new Vector3(player.transform.position.x + 2f * player.transform.localScale.x, transform.position.y);
+            transform.position = new Vector3(player.transform.position.x - 4f * player.transform.localScale.x, transform.position.y);
         }
 
         if (Input.GetKeyDown(KeyCode.S) && !isCreate)
