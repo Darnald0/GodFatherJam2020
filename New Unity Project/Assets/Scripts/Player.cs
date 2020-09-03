@@ -49,6 +49,14 @@ public class Player : MonoBehaviour
     {
         timeToAttack = timerAttack;
         isFocusingEnemy = false;
+        if (!animator.GetBool("Scaring"))
+        {
+            animator.SetBool("Idle", false);
+            animator.SetBool("Walking", false);
+            animator.SetBool("Running", false);
+            animator.SetBool("Constructing", false);
+            animator.SetBool("Scaring", true);
+        }
     }
 
     private void BuildBarricade()

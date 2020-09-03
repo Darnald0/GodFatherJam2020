@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("Walking", false);
                 animator.SetBool("Running", false);
                 animator.SetBool("Constructing", false);
+                animator.SetBool("Scaring", false);
                 animator.SetBool("Idle", true);
             }
         }
@@ -62,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("Idle", false);
                 animator.SetBool("Constructing", false);
                 animator.SetBool("Running", false);
+                animator.SetBool("Scaring", false);
                 animator.SetBool("Walking", true);
             }
         }
@@ -71,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 animator.SetBool("Idle", false);
                 animator.SetBool("Walking", false);
-                animator.SetBool("Constructing", false);
                 animator.SetBool("Running", true);
             }
         }
