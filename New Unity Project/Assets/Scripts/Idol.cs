@@ -10,6 +10,8 @@ public class Idol : MonoBehaviour
     [SerializeField] private GameObject village;
     [SerializeField] private GameObject numberOfOfferingNeeded;
     [SerializeField] private GameObject offeringNumber;
+    [SerializeField] private GameObject[] arrayOffering;
+    [SerializeField] private GameObject treeManager;
     private Text numberOfOfferingNeededDisplay;
     private int minimalNumberOfWoodNeeded;
     private bool isInIdol;
@@ -18,17 +20,18 @@ public class Idol : MonoBehaviour
     private bool alreadyMadeAnOffering = false;
     private bool offeringState = false;
     private int offeringIndex = 0;
-    [SerializeField] private GameObject[] arrayOffering;
 
     Player playerScript;
     Sky skyScript;
     Village villageScript;
+    TreeManager treeManagerScript;
 
     private void Start()
     {
         playerScript = player.GetComponent<Player>();
         skyScript = sky.GetComponent<Sky>();
         villageScript = village.GetComponent<Village>();
+        treeManagerScript = treeManager.GetComponent<TreeManager>();
         numberOfOfferingNeededDisplay = numberOfOfferingNeeded.GetComponent<Text>();
     }
 
@@ -63,41 +66,41 @@ public class Idol : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                switch(offeringIndex)
+                switch (offeringIndex)
                 {
                     case 0:
                         offeringNumber.SetActive(false);
                         offeringState = false;
-                        
+
                         break;
                     case 1:
-                        if(playerScript.wood >= 3)
+                        if (playerScript.wood >= 3)
                         {
                             Buff(offeringIndex);
                             alreadyMadeAnOffering = true;
                             offeringNumber.SetActive(false);
                             offeringState = false;
-                            
+
                         }
                         break;
                     case 2:
-                        if(playerScript.wood >= 6)
+                        if (playerScript.wood >= 6)
                         {
                             Buff(offeringIndex);
                             alreadyMadeAnOffering = true;
                             offeringNumber.SetActive(false);
                             offeringState = false;
-                            
+
                         }
                         break;
                     case 3:
-                        if(playerScript.wood >= 9)
+                        if (playerScript.wood >= 9)
                         {
                             Buff(offeringIndex);
                             alreadyMadeAnOffering = true;
                             offeringNumber.SetActive(false);
                             offeringState = false;
-                            
+
                         }
                         break;
                     default:
@@ -189,10 +192,10 @@ public class Idol : MonoBehaviour
                 playerScript.HalfWood();
                 break;
             case 2:
-                //one tree in the list of tree = 1hp
+                treeManagerScript.DamageTree();
                 break;
             case 3:
-                //one trre in the list of tree = 0hp
+                treeManagerScript.DestroyTree();
                 break;
             case 4:
                 villageScript.DestroyAHouse();
@@ -224,19 +227,19 @@ public class Idol : MonoBehaviour
 
                 break;
             case 2:
-                randomBuff = Random.Range(1, 3);
+                randomBuff = Random.Range(1, 2);
                 if (randomBuff == 1)
                 {
-                    //double tree life
+                    treeManagerScript.DoubleTreeLife();
                 }
-                else if (randomBuff == 2)
+                else //if (randomBuff == 2)
                 {
                     villageScript.DoublePassifGain();
                 }
-                else
-                {
-                    //+1 tree in tree list
-                }
+                //else
+                //{
+                //    //+1 tree in tree list
+                //}
 
                 break;
             case 3:

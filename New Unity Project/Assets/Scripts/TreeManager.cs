@@ -41,4 +41,26 @@ public class TreeManager : MonoBehaviour
                 trees[i].PassDay();
         }
     }
+
+    public void DoubleTreeLife()
+    {
+        for (int i = 0; i < trees.Length; i++)
+        {
+            trees[i].DoubleHealth();
+        }
+    }
+
+    public void DestroyTree()
+    {
+        int j = trees.Length;
+        int k = Random.Range(0, j);
+        trees[k].DestroyTree();
+    }
+
+    public void DamageTree()
+    {
+        int j = trees.Length;
+        int k = Random.Range(0, j);
+        trees[k].EnnemyAttack(1);
+    }
 }
