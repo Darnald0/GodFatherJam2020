@@ -104,3 +104,4 @@ MonoBehaviour:
   villageScript: {fileID: 0}
   idol: {fileID: 0}
   treeManager: {fileID: 0}
+  enemyManager: {fileID: 0}

@@ -42,14 +42,15 @@ public class Sky : MonoBehaviour
             StartCoroutine(FadeImageNight());
             isNight = true;
             enemyManager.PassNight();
+            idol.CheckIfEnoughOffering(idol.minimalNumberOfWoodNeeded, idol.numberOfWoodOffered);
         }
         else if (isNight)
         {
             StartCoroutine(FadeImageDay());
-            villageScript.GainPassif();
-            villageScript.ResetPassifGain();
             isNight = false;
             numberOfDay++;
+            villageScript.GainPassif();
+            villageScript.ResetPassifGain();
             idol.CheckDay();
             treeManager.PassDay();
             enemyManager.PassDay();
