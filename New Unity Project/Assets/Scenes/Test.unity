@@ -401,7 +401,7 @@ PrefabInstance:
     - target: {fileID: 7117909206259604212, guid: 6f7a0c6e0bdecdf46a34ecbcc5d3c53a,
         type: 3}
       propertyPath: timeInSecondToPassTheDay
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7117909206259604213, guid: 6f7a0c6e0bdecdf46a34ecbcc5d3c53a,
         type: 3}
@@ -2040,7 +2040,7 @@ PrefabInstance:
     - target: {fileID: 519516359544516659, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -3.2
       objectReference: {fileID: 0}
     - target: {fileID: 519516359544516659, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
         type: 3}
@@ -2432,6 +2432,11 @@ PrefabInstance:
       propertyPath: barricadeManager
       value: 
       objectReference: {fileID: 1207720125}
+    - target: {fileID: 1118153350292607612, guid: e2bbe646359064f4bb0e142a6650a6d3,
+        type: 3}
+      propertyPath: timeToAttack
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2293423649885452812, guid: e2bbe646359064f4bb0e142a6650a6d3,
         type: 3}
       propertyPath: m_Name
@@ -2664,7 +2669,7 @@ PrefabInstance:
     - target: {fileID: 7300730743129990208, guid: 01bd34f5cfc47cd44bf7618ab8dab45f,
         type: 3}
       propertyPath: increaseSpeedBy
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7300730743129990209, guid: 01bd34f5cfc47cd44bf7618ab8dab45f,
         type: 3}
