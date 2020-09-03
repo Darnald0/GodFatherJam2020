@@ -10,6 +10,7 @@ public class Barricade : MonoBehaviour
     private SpriteRenderer spriteRenderer = null;
     private float lifeBarFloat = 0f;
     private int maxHealth = 0;
+    private Color notBuildingColor = Color.white;
 
     [SerializeField] private GameObject spriteLifeBar = null;
     [SerializeField] private GameObject spriteLifeBarWhite = null;
@@ -24,7 +25,8 @@ public class Barricade : MonoBehaviour
     {
         player = GetComponentInParent<Player>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = new Vector4(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.2f);
+        notBuildingColor = new Vector4(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.2f);
+        spriteRenderer.color = notBuildingColor;
         lifeBarFloat = spriteLifeBar.transform.localScale.x;
         maxHealth = health;
     }
@@ -42,7 +44,7 @@ public class Barricade : MonoBehaviour
             transform.position = new Vector3(player.transform.position.x + 2f * player.transform.localScale.x, transform.position.y);
         }
 
-        if (Input.GetKeyDown(KeyCode.A) && !isCreate)
+        if (Input.GetKeyDown(KeyCode.S) && !isCreate)
         {
             if (player.buildBarricade && costCreate <= player.wood && canBuild && timeCreate == -1f)
             {
@@ -93,7 +95,11 @@ public class Barricade : MonoBehaviour
             return;
 
         if (!isCreate)
+        {
             canBuild = false;
+            Color grey = new Vector4(Color.grey.r, Color.grey.g, Color.grey.b, 0.2f);
+            spriteRenderer.color = grey;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -107,6 +113,7 @@ public class Barricade : MonoBehaviour
                 return;
 
             canBuild = true;
+            spriteRenderer.color = notBuildingColor;
         }
     }
 }

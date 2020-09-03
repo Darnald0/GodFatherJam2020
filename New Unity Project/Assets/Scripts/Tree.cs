@@ -31,7 +31,7 @@ public class Tree : MonoBehaviour
     {
         if (isIn)
         {
-            if (Input.GetMouseButton(0) && realTimeToDamage > 0f && health > 1)
+            if (Input.GetKey(KeyCode.E) && realTimeToDamage > 0f && health > 1)
             {
                 if (!particles.isPlaying)
                     particles.Play();

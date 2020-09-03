@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!buildBarricade && Input.GetKeyDown(KeyCode.Z))
+        if (!buildBarricade && Input.GetKeyDown(KeyCode.S))
         {
             BuildBarricade();
         }

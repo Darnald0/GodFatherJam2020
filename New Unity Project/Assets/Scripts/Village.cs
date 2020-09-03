@@ -21,7 +21,7 @@ public class Village : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S) && isInVillage && player.wood >= costToBuild)
+        if (Input.GetKeyDown(KeyCode.E) && isInVillage && player.wood >= costToBuild)
         {
             BuildHouse();
         }

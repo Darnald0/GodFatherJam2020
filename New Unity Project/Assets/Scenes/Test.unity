@@ -139,7 +139,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1964410446}
     - target: {fileID: 2095679329080527179, guid: 4c2d931c87d5b974f9663d93608db608,
         type: 3}
       propertyPath: sky
