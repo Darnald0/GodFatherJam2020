@@ -49,9 +49,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!animator.GetBool("Idle"))
             {
-                animator.SetBool("Idle", true);
                 animator.SetBool("Walking", false);
                 animator.SetBool("Running", false);
+                animator.SetBool("Constructing", false);
+                animator.SetBool("Idle", true);
             }
         }
         else if (isWalking)
@@ -59,8 +60,9 @@ public class PlayerMovement : MonoBehaviour
             if (!animator.GetBool("Walking"))
             {
                 animator.SetBool("Idle", false);
-                animator.SetBool("Walking", true);
+                animator.SetBool("Constructing", false);
                 animator.SetBool("Running", false);
+                animator.SetBool("Walking", true);
             }
         }
         else if (isRunning)
@@ -68,8 +70,9 @@ public class PlayerMovement : MonoBehaviour
             if (!animator.GetBool("Running"))
             {
                 animator.SetBool("Idle", false);
-                animator.SetBool("Running", true);
                 animator.SetBool("Walking", false);
+                animator.SetBool("Constructing", false);
+                animator.SetBool("Running", true);
             }
         }
     }
