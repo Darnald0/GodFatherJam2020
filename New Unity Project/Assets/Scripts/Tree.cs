@@ -112,6 +112,16 @@ public class Tree : MonoBehaviour
         }
     }
 
+    public void DestroyTree()
+    {
+        health = 0;
+    }
+
+    public void DoubleHealth()
+    {
+        health = health * 2;
+    }
+
     public void ShowLife(bool show)
     {
         if (!spriteBarTree.activeSelf && show)

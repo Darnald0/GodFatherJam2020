@@ -84,6 +84,11 @@ public class Barricade : MonoBehaviour
             Destroy(gameObject);
     }
 
+    public void DoubleHealth()
+    {
+        health = health * 2;
+    }
+
     public void AttackBarricade(int damage)
     {
         health -= damage;
