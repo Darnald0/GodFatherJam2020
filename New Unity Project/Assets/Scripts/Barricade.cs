@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class Barricade : MonoBehaviour
@@ -11,6 +10,7 @@ public class Barricade : MonoBehaviour
     private SpriteRenderer spriteRenderer = null;
     private float lifeBarFloat = 0f;
     private int maxHealth = 0;
+    private Color notBuildingColor = Color.white;
 
     [SerializeField] private GameObject spriteLifeBar = null;
     [SerializeField] private GameObject spriteLifeBarWhite = null;
@@ -25,28 +25,38 @@ public class Barricade : MonoBehaviour
     {
         player = GetComponentInParent<Player>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = new Vector4(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.2f);
+        notBuildingColor = new Vector4(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.2f);
+        spriteRenderer.color = notBuildingColor;
         lifeBarFloat = spriteLifeBar.transform.localScale.x;
         maxHealth = health;
     }
 
     private void Update()
     {
-        if (!isCreate && timeCreate == -1f && player.buildBarricade)
+        if (Input.GetKeyDown(KeyCode.Z) && !isCreate && timeCreate == -1f)
         {
-            transform.position = new Vector3(player.transform.position.x + 2f * player.transform.localScale.x, transform.position.y);
+            player.buildBarricade = false;
+            Destroy(gameObject);
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && !isCreate)
+        if (!isCreate && timeCreate == -1f && timeCreate == -1f)
+        {
+            transform.position = new Vector3(player.transform.position.x - 4f * player.transform.localScale.x, transform.position.y);
+        }
+
+        if (Input.GetKeyDown(KeyCode.S) && !isCreate)
         {
             if (player.buildBarricade && costCreate <= player.wood && canBuild && timeCreate == -1f)
             {
                 player.wood -= costCreate;
                 canBuild = false;
-                gameObject.transform.parent = null;
+                gameObject.transform.parent = player.barricadeManager.transform;
+                player.barricadeManager.barricades.Add(this);
                 Destroy(GetComponent<Rigidbody2D>());
                 player.buildBarricade = false;
                 timeCreate = timeToCreate;
+                player.isBuilding = true;
+                // Play anim here
             }
             else if (player.buildBarricade && (costCreate > player.wood || !canBuild) && timeCreate == -1f)
             {
@@ -65,6 +75,7 @@ public class Barricade : MonoBehaviour
         {
             isCreate = true;
             timeCreate = -1f;
+            player.isBuilding = false;
         }
     }
 
@@ -85,7 +96,11 @@ public class Barricade : MonoBehaviour
             return;
 
         if (!isCreate)
+        {
             canBuild = false;
+            Color grey = new Vector4(Color.grey.r, Color.grey.g, Color.grey.b, 0.2f);
+            spriteRenderer.color = grey;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -99,6 +114,7 @@ public class Barricade : MonoBehaviour
                 return;
 
             canBuild = true;
+            spriteRenderer.color = notBuildingColor;
         }
     }
 }

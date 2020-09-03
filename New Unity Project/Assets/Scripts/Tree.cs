@@ -18,11 +18,13 @@ public class Tree : MonoBehaviour
     [SerializeField] private int woodsGiven = 2;
     [SerializeField] private GameObject spriteBarTree = null;
     [SerializeField] private GameObject spriteBarWhite = null;
+    private ParticleSystem particles = null;
 
     private void Start()
     {
         realTimeToDamage = timeToDamage;
         spriteBarTreeFloat = spriteBarTree.transform.localScale.x;
+        particles = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Update()
@@ -31,11 +33,13 @@ public class Tree : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.E) && realTimeToDamage > 0f && health > 1)
             {
+                if (!particles.isPlaying)
+                    particles.Play();
+
                 realTimeToDamage -= Time.deltaTime;
 
                 spriteBarTree.transform.localScale = new Vector3(spriteBarTree.transform.localScale.x - (spriteBarTreeFloat / timeToDamage) * Time.deltaTime, spriteBarTree.transform.localScale.y, spriteBarTree.transform.localScale.z);
                 spriteBarTree.transform.localPosition = new Vector3(spriteBarTree.transform.localPosition.x - ((spriteBarTreeFloat / timeToDamage) * Time.deltaTime) / 2, spriteBarTree.transform.localPosition.y, spriteBarTree.transform.localPosition.z);
-                //spriteBarTree.transform.localPosition = new Vector3(spriteBarTree.transform.localPosition.x, spriteBarTree.transform.localPosition.y - (spriteBarTree.transform.localScale.y / timeToDamage) * Time.deltaTime, spriteBarTree.transform.localPosition.z);
             }
             else if (realTimeToDamage <= 0f)
             {
@@ -46,9 +50,17 @@ public class Tree : MonoBehaviour
                 spriteBarTree.transform.localScale = new Vector3(spriteBarTreeFloat, spriteBarTree.transform.localScale.y, spriteBarTree.transform.localScale.z);
                 spriteBarTree.transform.localPosition = new Vector3(0f, spriteBarTree.transform.localPosition.y, spriteBarTree.transform.localPosition.z);
             }
+            else
+            {
+                if (particles.isPlaying)
+                    particles.Stop();
+            }
         }
         else
         {
+            if (particles.isPlaying)
+                particles.Stop();
+
             if (realTimeToDamage < timeToDamage && health > 1)
             {
                 realTimeToDamage += Time.deltaTime;
@@ -80,6 +92,30 @@ public class Tree : MonoBehaviour
         {
             health++;
             transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        }
+    }
+
+    public void DestroyTree()
+    {
+        health = 0;
+    }
+
+    public void DoubleHealth()
+    {
+        health = health * 2;
+    }
+
+    public void ShowLife(bool show)
+    {
+        if (!spriteBarTree.activeSelf && show)
+        {
+            spriteBarTree.SetActive(true);
+            spriteBarWhite.SetActive(true);
+        }
+        else if (spriteBarTree.activeSelf && !show)
+        {
+            spriteBarTree.SetActive(false);
+            spriteBarWhite.SetActive(false);
         }
     }
 

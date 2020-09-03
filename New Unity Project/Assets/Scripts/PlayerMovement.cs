@@ -11,24 +11,33 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float speed = 40f;
 
+    private Player player = null;
+
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        player = GetComponent<Player>();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     void Update()
     {
-        Horizontal = Input.GetAxisRaw("Horizontal");
+        if (!player.isBuilding && !player.isStayingIdol)
+        {
+            Horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (Horizontal > 0 && !rightFace)
-            Flip();
-        else if (Horizontal < 0 && rightFace)
-            Flip();
+            if (Horizontal < 0 && !rightFace)
+                Flip();
+            else if (Horizontal > 0 && rightFace)
+                Flip();
+        }
     }
 
     private void FixedUpdate()
     {
-        rig.velocity = new Vector2(Horizontal * 10f * speed * Time.fixedDeltaTime, rig.velocity.y);
+        if (!player.isBuilding && !player.isStayingIdol)
+            rig.velocity = new Vector2(Horizontal * 10f * speed * Time.fixedDeltaTime, rig.velocity.y);
     }
 
     private void Flip()

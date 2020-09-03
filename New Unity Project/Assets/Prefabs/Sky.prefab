@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: b3e5f6ffd97555843890fd8c1a51bcde, type: 3}
-  m_Color: {r: 0.99215686, g: 0.78431374, b: 0.32156864, a: 1}
+  m_Color: {r: 0.86666673, g: 0.6, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,8 +96,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNight: 0
+  numberOfDay: 1
   timeInSecondToPassTheDay: 5
-  dayColor: {r: 0.990566, g: 0.7855667, b: 0.3224012, a: 1}
+  dayColor: {r: 0.8679245, g: 0.5989187, b: 0, a: 1}
   nightColor: {r: 0, g: 0.055106327, b: 0.4528302, a: 1}
-  fade: {fileID: 0}
-  village: {fileID: 3843695019393286372, guid: 30cba03824545cf4ca287c56036d732f, type: 3}
+  fadeImage: {fileID: 0}
+  villageScript: {fileID: 0}
+  idol: {fileID: 0}
+  treeManager: {fileID: 0}
