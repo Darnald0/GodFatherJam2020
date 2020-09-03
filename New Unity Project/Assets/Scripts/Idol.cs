@@ -12,6 +12,7 @@ public class Idol : MonoBehaviour
     [SerializeField] private GameObject offeringNumber;
     [SerializeField] private GameObject[] arrayOffering;
     [SerializeField] private GameObject treeManager;
+    [SerializeField] private GameObject barricadeManager;
     private Text numberOfOfferingNeededDisplay;
     private int minimalNumberOfWoodNeeded;
     private bool isInIdol;
@@ -25,9 +26,11 @@ public class Idol : MonoBehaviour
     Sky skyScript;
     Village villageScript;
     TreeManager treeManagerScript;
+    BarricadeManager barricadeManagerScript;
 
     private void Start()
     {
+        barricadeManagerScript = barricadeManager.GetComponent<BarricadeManager>();
         playerScript = player.GetComponent<Player>();
         skyScript = sky.GetComponent<Sky>();
         villageScript = village.GetComponent<Village>();
@@ -43,9 +46,9 @@ public class Idol : MonoBehaviour
             player.isStayingIdol = true;
             offeringState = true;
         }
-
-        if (offeringState)
+        else
         {
+
             arrayOffering[offeringIndex].GetComponent<Text>().fontStyle = FontStyle.Bold;
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -71,7 +74,7 @@ public class Idol : MonoBehaviour
                     case 0:
                         offeringNumber.SetActive(false);
                         offeringState = false;
-
+                        player.isStayingIdol = false;
                         break;
                     case 1:
                         if (playerScript.wood >= 3)
@@ -80,7 +83,7 @@ public class Idol : MonoBehaviour
                             alreadyMadeAnOffering = true;
                             offeringNumber.SetActive(false);
                             offeringState = false;
-
+                            player.isStayingIdol = false;
                         }
                         break;
                     case 2:
@@ -90,7 +93,7 @@ public class Idol : MonoBehaviour
                             alreadyMadeAnOffering = true;
                             offeringNumber.SetActive(false);
                             offeringState = false;
-
+                            player.isStayingIdol = false;
                         }
                         break;
                     case 3:
@@ -100,16 +103,17 @@ public class Idol : MonoBehaviour
                             alreadyMadeAnOffering = true;
                             offeringNumber.SetActive(false);
                             offeringState = false;
-
+                            player.isStayingIdol = false;
                         }
                         break;
                     default:
                         Debug.Log("Offering Error");
                         break;
                 }
-                player.isStayingIdol = false;
             }
+
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -246,7 +250,7 @@ public class Idol : MonoBehaviour
                 randomBuff = Random.Range(1, 2);
                 if (randomBuff == 1)
                 {
-                    //barricade health x2
+                    barricadeManagerScript.DoubleBarricadeHealth();
                 }
                 else
                 {
