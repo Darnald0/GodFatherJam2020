@@ -5,7 +5,13 @@ using UnityEngine;
 public class TreeManager : MonoBehaviour
 {
     private Tree[] trees;
+    [SerializeField] private Sky sky;
     [SerializeField] private Player player;
+    [Space]
+    public Sprite bigTreeDay = null;
+    public Sprite bigTreeNight = null;
+    public Sprite littleTreeDay = null;
+    public Sprite littleTreeNight = null;
 
     void Start()
     {
@@ -14,11 +20,48 @@ public class TreeManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad0))
-            PassDay();
-
         for (int i = 0; i < trees.Length; i++)
         {
+            switch (trees[i].health)
+            {
+                case 1:
+                    if (!trees[i].littleTree.gameObject.activeSelf)
+                    {
+                        trees[i].littleTree.gameObject.SetActive(true);
+                        trees[i].bigTree.gameObject.SetActive(false);
+                    }
+
+                    if (sky.isNight && trees[i].littleTree.sprite != littleTreeNight)
+                    {
+                        trees[i].littleTree.sprite = littleTreeNight;
+                    }
+                    else if (!sky.isNight && trees[i].littleTree.sprite != littleTreeDay)
+                    {
+                        trees[i].littleTree.sprite = littleTreeDay;
+                    }
+                    break;
+
+                case 2:
+                    if (!trees[i].bigTree.gameObject.activeSelf)
+                    {
+                        trees[i].littleTree.gameObject.SetActive(false);
+                        trees[i].bigTree.gameObject.SetActive(true);
+                    }
+
+                    if (sky.isNight && trees[i].bigTree.sprite != bigTreeNight)
+                    {
+                        trees[i].bigTree.sprite = bigTreeNight;
+                    }
+                    else if (!sky.isNight && trees[i].bigTree.sprite != bigTreeDay)
+                    {
+                        trees[i].bigTree.sprite = bigTreeDay;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+
             Vector3 posTree = new Vector3(trees[i].gameObject.transform.position.x, 0f, 0f);
             Vector3 posPlayer = new Vector3(player.transform.position.x, 0f, 0f);
 

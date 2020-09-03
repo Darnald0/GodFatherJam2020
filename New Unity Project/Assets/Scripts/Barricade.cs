@@ -25,7 +25,7 @@ public class Barricade : MonoBehaviour
     private SpriteRenderer spriteRenderer = null;
     private float lifeBarFloat = 0f;
     private int maxHealth = 0;
-    private Color notBuildingColor = Color.grey;
+    private Color notBuildingColor = Color.white;
 
     private void Start()
     {
@@ -47,7 +47,7 @@ public class Barricade : MonoBehaviour
 
         if (!isCreate && timeCreate == -1f && timeCreate == -1f)
         {
-            transform.position = new Vector3(player.transform.position.x - 4f * player.transform.localScale.x, transform.position.y);
+            transform.position = new Vector3(player.transform.position.x - 6f * player.transform.localScale.x, transform.position.y);
         }
 
         if (Input.GetKeyDown(KeyCode.S) && !isCreate)
@@ -82,9 +82,10 @@ public class Barricade : MonoBehaviour
             isCreate = true;
             timeCreate = -1f;
             player.isBuilding = false;
+
         }
 
-        if (health == 0 && isCreate)
+        if (health <= 0 && isCreate)
             Destroy(gameObject);
     }
 

@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
                 tree.nbEnemy--;
             tree = null;
             barricade = null;
-            GetComponent<CircleCollider2D>().enabled = false; // change to capsule collider 2d
+            GetComponent<CapsuleCollider2D>().enabled = false;
         } 
 
         if (Input.GetKeyDown(KeyCode.A) && health > 0 && !isDead && playerIsIn && player.timeToAttack <= 0f)

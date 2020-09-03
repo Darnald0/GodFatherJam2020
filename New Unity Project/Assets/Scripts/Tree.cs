@@ -7,6 +7,7 @@ public class Tree : MonoBehaviour
 {
     [Header("Do Not Touch")]
     public int nbEnemy = 0;
+    public int health = 2;
 
     [Header("Change This")]
     [SerializeField] private float playerTimeToDamage = 2f;
@@ -14,8 +15,10 @@ public class Tree : MonoBehaviour
     [SerializeField] private int woodsGiven = 2;
     [SerializeField] private GameObject spriteBarTree = null;
     [SerializeField] private GameObject spriteBarWhite = null;
+    [Space]
+    public SpriteRenderer bigTree = null;
+    public SpriteRenderer littleTree = null;
 
-    private int health = 2;
     private float realTimeToDamage = 2f;
     private float realEnemyTimeToDamage = 2f;
     private bool isIn = false;
@@ -52,7 +55,7 @@ public class Tree : MonoBehaviour
                 realTimeToDamage = playerTimeToDamage;
                 health--;
                 player.wood += woodsGiven;
-                transform.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+                //transform.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
                 spriteBarTree.transform.localScale = new Vector3(spriteBarTreeFloat, spriteBarTree.transform.localScale.y, spriteBarTree.transform.localScale.z);
                 spriteBarTree.transform.localPosition = new Vector3(0f, spriteBarTree.transform.localPosition.y, spriteBarTree.transform.localPosition.z);
             }
@@ -109,7 +112,6 @@ public class Tree : MonoBehaviour
         if (health == 1)
         {
             health++;
-            transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
         }
     }
 
