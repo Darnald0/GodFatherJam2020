@@ -28,12 +28,15 @@ public class Tree : MonoBehaviour
     private float distToGoUp = 0f;
     private ParticleSystem particles = null;
 
+    PlayMultipleSound soundScript;
+
     private void Start()
     {
         realTimeToDamage = playerTimeToDamage;
         realEnemyTimeToDamage = enemyTimeToDamage;
         spriteBarTreeFloat = spriteBarTree.transform.localScale.x;
         particles = GetComponentInChildren<ParticleSystem>();
+        soundScript = GetComponent<PlayMultipleSound>();
     }
 
     private void Update()
@@ -43,7 +46,10 @@ public class Tree : MonoBehaviour
             if (Input.GetKey(KeyCode.E) && realTimeToDamage > 0f && health > 1)
             {
                 if (!particles.isPlaying)
+                {
                     particles.Play();
+                    soundScript.PlaySound(TYPE_AUDIO.CuttingTree);
+                }
 
                 realTimeToDamage -= Time.deltaTime;
 
@@ -55,6 +61,7 @@ public class Tree : MonoBehaviour
                 realTimeToDamage = playerTimeToDamage;
                 health--;
                 player.wood += woodsGiven;
+                soundScript.PlaySound(TYPE_AUDIO.GetWood);
                 spriteBarTree.transform.localScale = new Vector3(spriteBarTreeFloat, spriteBarTree.transform.localScale.y, spriteBarTree.transform.localScale.z);
                 spriteBarTree.transform.localPosition = new Vector3(0f, spriteBarTree.transform.localPosition.y, spriteBarTree.transform.localPosition.z);
             }
