@@ -144,6 +144,11 @@ public class Tree : MonoBehaviour
             return this;
     }
 
+    public void DamageTree(int damage)
+    {
+        health -= damage;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

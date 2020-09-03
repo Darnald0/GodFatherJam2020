@@ -61,6 +61,6 @@ public class TreeManager : MonoBehaviour
     {
         int j = trees.Length;
         int k = Random.Range(0, j);
-        trees[k].EnnemyAttack(1);
+        trees[k].DamageTree(1);
     }
 }
