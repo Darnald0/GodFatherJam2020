@@ -18,14 +18,24 @@ public class Player : MonoBehaviour
     public float timeToAttack = 1f;
 
     private float timerAttack = 0f;
+    private Animator animator;
 
     private void Start()
     {
         timerAttack = timeToAttack;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        if (isBuilding && !animator.GetBool("Constructing"))
+        {
+            animator.SetBool("Idle", false);
+            animator.SetBool("Walking", false);
+            animator.SetBool("Running", false);
+            animator.SetBool("Constructing", true);
+        }
+
         if (timeToAttack > 0f)
             timeToAttack -= Time.deltaTime;
 
