@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TreeManager : MonoBehaviour
 {
-    [SerializeField] private Tree[] trees;
+    private Tree[] trees;
     [SerializeField] private Player player;
 
     void Start()

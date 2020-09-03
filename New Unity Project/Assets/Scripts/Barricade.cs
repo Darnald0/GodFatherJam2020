@@ -39,15 +39,9 @@ public class Barricade : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (!isCreate && timeCreate == -1f && player.isStayingIdol)
-        {
-            player.buildBarricade = false;
-            Destroy(gameObject);
-        }
-
         if (!isCreate && timeCreate == -1f && timeCreate == -1f)
         {
-            transform.position = new Vector3(player.transform.position.x + 2f * player.transform.localScale.x, transform.position.y);
+            transform.position = new Vector3(player.transform.position.x - 4f * player.transform.localScale.x, transform.position.y);
         }
 
         if (Input.GetKeyDown(KeyCode.S) && !isCreate)
@@ -56,7 +50,8 @@ public class Barricade : MonoBehaviour
             {
                 player.wood -= costCreate;
                 canBuild = false;
-                gameObject.transform.parent = null;
+                gameObject.transform.parent = player.barricadeManager.transform;
+                player.barricadeManager.barricades.Add(this);
                 Destroy(GetComponent<Rigidbody2D>());
                 player.buildBarricade = false;
                 timeCreate = timeToCreate;
