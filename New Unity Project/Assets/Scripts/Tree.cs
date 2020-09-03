@@ -55,7 +55,6 @@ public class Tree : MonoBehaviour
                 realTimeToDamage = playerTimeToDamage;
                 health--;
                 player.wood += woodsGiven;
-                //transform.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
                 spriteBarTree.transform.localScale = new Vector3(spriteBarTreeFloat, spriteBarTree.transform.localScale.y, spriteBarTree.transform.localScale.z);
                 spriteBarTree.transform.localPosition = new Vector3(0f, spriteBarTree.transform.localPosition.y, spriteBarTree.transform.localPosition.z);
             }
