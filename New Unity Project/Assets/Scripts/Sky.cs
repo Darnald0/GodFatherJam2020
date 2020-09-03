@@ -40,6 +40,7 @@ public class Sky : MonoBehaviour
         {
             StartCoroutine(FadeImageNight());
             isNight = true;
+            idol.CheckIfEnoughOffering(idol.minimalNumberOfWoodNeeded, idol.numberOfWoodOffered);
         }
         else if (isNight)
         {
@@ -48,6 +49,7 @@ public class Sky : MonoBehaviour
             villageScript.ResetPassifGain();
             isNight = false;
             numberOfDay++;
+            idol.numberOfWoodOffered = 0;
             idol.CheckDay();
             treeManager.PassDay();
         }
