@@ -16,6 +16,7 @@ public class Sky : MonoBehaviour
     [SerializeField] private Village villageScript;
     [SerializeField] private Idol idol;
     [SerializeField] private TreeManager treeManager;
+    [SerializeField] private EnemyManager enemyManager;
     private SpriteRenderer sr;
 
     void Start()
@@ -40,6 +41,7 @@ public class Sky : MonoBehaviour
         {
             StartCoroutine(FadeImageNight());
             isNight = true;
+            enemyManager.PassNight();
         }
         else if (isNight)
         {
@@ -50,6 +52,7 @@ public class Sky : MonoBehaviour
             numberOfDay++;
             idol.CheckDay();
             treeManager.PassDay();
+            enemyManager.PassDay();
         }
         timer = 0;
     }

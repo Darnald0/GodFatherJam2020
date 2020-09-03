@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private GameObject barricadePrefab = null;
-    public BarricadeManager barricadeManager = null;
-
+    [Header("Do Not Touch")]
     public int wood = 0;
     public bool buildBarricade = false;
     public bool isBuilding = false;
     public bool isStayingIdol = false;
+
+    [Header("Change This")]
+    [SerializeField] private GameObject barricadePrefab = null;
+    public BarricadeManager barricadeManager = null;
 
     void Update()
     {

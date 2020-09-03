@@ -4,21 +4,50 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private int damage;
-    [SerializeField] private float timeToAttack;
-    [Space]
+    [Header("Do Not Touch")]
     public Tree tree;
     public Barricade barricade;
+    public bool left;
+
+    [Header("Change This")]
+    public int health = 3;
+    public float speed;
+    public int damage;
+    [SerializeField] private float timeToAttack;
+     
     private float timer;
     private float dep = 0;
-    public bool left;
     private Rigidbody2D rig;
+    private bool isDead = false;
+    private Vector2 toGoInDeath = Vector2.zero;
 
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+    }
+
+    public void InitializeEnemy(float _speed, int _damage, bool _left)
+    {
+        speed = _speed;
+        damage = _damage;
+        left = _left;
         dep = left ? 1f : -1f;
+    }
+
+    private void Update()
+    {
+        if (health <= 0 && !isDead)
+        {
+            isDead = true;
+            dep = left ? -1f : 1f;
+            if (barricade != null)
+                barricade.nbEnemy--;
+            if (tree != null)
+                tree.nbEnemy--;
+            tree = null;
+            barricade = null;
+            GetComponent<CircleCollider2D>().enabled = false; // change to capsule collider 2d
+        } 
     }
 
 

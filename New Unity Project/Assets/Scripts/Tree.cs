@@ -5,23 +5,24 @@ using UnityEngine;
 
 public class Tree : MonoBehaviour
 {
+    [Header("Do Not Touch")]
     public int nbEnemy = 0;
+
+    [Header("Change This")]
+    [SerializeField] private float playerTimeToDamage = 2f;
+    [SerializeField] private float enemyTimeToDamage = 10f;
+    [SerializeField] private int woodsGiven = 2;
+    [SerializeField] private GameObject spriteBarTree = null;
+    [SerializeField] private GameObject spriteBarWhite = null;
+
     private int health = 2;
     private float realTimeToDamage = 2f;
     private float realEnemyTimeToDamage = 2f;
     private bool isIn = false;
     private Player player = null;
-
     private float spriteBarTreeFloat = 0f;
-
     private float timeToGoUp = 0f;
     private float distToGoUp = 0f;
-
-    [SerializeField] private float playerTimeToDamage = 2f;
-    [SerializeField] private float enemyTimeToDamage = 10f; 
-    [SerializeField] private int woodsGiven = 2;
-    [SerializeField] private GameObject spriteBarTree = null;
-    [SerializeField] private GameObject spriteBarWhite = null;
     private ParticleSystem particles = null;
 
     private void Start()

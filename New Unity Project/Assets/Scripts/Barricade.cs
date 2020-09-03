@@ -5,23 +5,27 @@ using UnityEngine;
 
 public class Barricade : MonoBehaviour
 {
-    private int nbEnemy = 0;
+    [Header("Do Not Touch")]
+    public bool isCreate = false;
+    public int nbEnemy = 0;
+
+    [Header("Change This")]
+    [SerializeField] private int health = 10;
+    [SerializeField] private int costCreate = 0;
+    [SerializeField] private float timeToCreate = 2f;
+    [SerializeField] private GameObject spriteLifeBar = null;
+    [SerializeField] private GameObject spriteLifeBarWhite = null;
+    
+    private int costRepair = 0;
+
+    
     private Player player = null;
     private bool canBuild = true;
     private float timeCreate = -1f;
     private SpriteRenderer spriteRenderer = null;
     private float lifeBarFloat = 0f;
     private int maxHealth = 0;
-    private Color notBuildingColor = Color.white;
-
-    [SerializeField] private GameObject spriteLifeBar = null;
-    [SerializeField] private GameObject spriteLifeBarWhite = null;
-    [Space]
-    [SerializeField] private float timeToCreate = 2f;
-    [SerializeField] private int costCreate = 0;
-    private int costRepair = 0;
-    [SerializeField] private int health = 10;
-    public bool isCreate = false;
+    private Color notBuildingColor = Color.grey;
 
     private void Start()
     {
