@@ -95,6 +95,20 @@ public class Tree : MonoBehaviour
         }
     }
 
+    public void ShowLife(bool show)
+    {
+        if (!spriteBarTree.activeSelf && show)
+        {
+            spriteBarTree.SetActive(true);
+            spriteBarWhite.SetActive(true);
+        }
+        else if (spriteBarTree.activeSelf && !show)
+        {
+            spriteBarTree.SetActive(false);
+            spriteBarWhite.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag("Player"))

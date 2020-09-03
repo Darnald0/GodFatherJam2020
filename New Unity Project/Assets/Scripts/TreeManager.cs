@@ -5,6 +5,7 @@ using UnityEngine;
 public class TreeManager : MonoBehaviour
 {
     [SerializeField] private Tree[] trees;
+    [SerializeField] private Player player;
 
     void Start()
     {
@@ -15,6 +16,21 @@ public class TreeManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Keypad0))
             PassDay();
+
+        for (int i = 0; i < trees.Length; i++)
+        {
+            Vector3 posTree = new Vector3(trees[i].gameObject.transform.position.x, 0f, 0f);
+            Vector3 posPlayer = new Vector3(player.transform.position.x, 0f, 0f);
+
+            if (Vector3.Distance(posPlayer, posTree) <= 4f)
+            {
+                trees[i].ShowLife(true);
+            }
+            else
+            {
+                trees[i].ShowLife(false);
+            }
+        }
     }
 
     public void PassDay()

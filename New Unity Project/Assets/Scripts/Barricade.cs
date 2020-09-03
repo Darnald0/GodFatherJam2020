@@ -33,7 +33,13 @@ public class Barricade : MonoBehaviour
 
     private void Update()
     {
-        if (!isCreate && timeCreate == -1f && timeCreate == -1f && player.isStayingIdol)
+        if (Input.GetKeyDown(KeyCode.Z) && !isCreate && timeCreate == -1f)
+        {
+            player.buildBarricade = false;
+            Destroy(gameObject);
+        }
+
+        if (!isCreate && timeCreate == -1f && player.isStayingIdol)
         {
             player.buildBarricade = false;
             Destroy(gameObject);
