@@ -8,9 +8,9 @@ public class Enemy : MonoBehaviour
     public Tree tree;
     public Barricade barricade;
     public bool left;
+    public int health = 1;
 
     [Header("Change This")]
-    public int health = 3;
     public float speed;
     public int damage;
     [SerializeField] private float timeToAttack;
@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rig;
     private bool isDead = false;
     private Vector2 toGoInDeath = Vector2.zero;
+    private bool playerIsIn = false;
+    private Player player = null;
 
     void Start()
     {
@@ -48,6 +50,13 @@ public class Enemy : MonoBehaviour
             barricade = null;
             GetComponent<CircleCollider2D>().enabled = false; // change to capsule collider 2d
         } 
+
+        if (Input.GetKeyDown(KeyCode.A) && health > 0 && !isDead && playerIsIn && player.timeToAttack <= 0f)
+        {
+            health = 0;
+            playerIsIn = false;
+            player.ResetAttack();
+        }
     }
 
 
@@ -77,6 +86,32 @@ public class Enemy : MonoBehaviour
         {
             barricade.AttackBarricade(damage);
             timer = 0f;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (health <= 0)
+            return;
+
+        if (collision.CompareTag("Player") && !playerIsIn)
+        {
+            if (player == null)
+                player = collision.gameObject.GetComponent<Player>();
+            if (!player.isFocusingEnemy)
+            {
+                playerIsIn = true;
+                player.isFocusingEnemy = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && playerIsIn)
+        {
+            playerIsIn = false;
+            player.isFocusingEnemy = false;
         }
     }
 }
