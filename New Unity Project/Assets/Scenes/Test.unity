@@ -135,6 +135,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: Idol
       objectReference: {fileID: 0}
+    - target: {fileID: 595281409293481504, guid: 4c2d931c87d5b974f9663d93608db608,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6154791271047663432, guid: d31693c2ce67aed44abcce524c52fa0b,
+        type: 3}
+    - target: {fileID: 595281409293481504, guid: 4c2d931c87d5b974f9663d93608db608,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 595281409293481504, guid: 4c2d931c87d5b974f9663d93608db608,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 595281409293481504, guid: 4c2d931c87d5b974f9663d93608db608,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.20549631
+      objectReference: {fileID: 0}
     - target: {fileID: 2095679329080527179, guid: 4c2d931c87d5b974f9663d93608db608,
         type: 3}
       propertyPath: player
@@ -789,7 +810,7 @@ PrefabInstance:
     - target: {fileID: 3843695019393286368, guid: 30cba03824545cf4ca287c56036d732f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 3843695019393286368, guid: 30cba03824545cf4ca287c56036d732f,
         type: 3}
@@ -836,6 +857,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3843695019393286368, guid: 30cba03824545cf4ca287c56036d732f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843695019393286368, guid: 30cba03824545cf4ca287c56036d732f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843695019393286369, guid: 30cba03824545cf4ca287c56036d732f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b6363646e3842324ea13c521b003639c,
+        type: 3}
     - target: {fileID: 3843695019393286371, guid: 30cba03824545cf4ca287c56036d732f,
         type: 3}
       propertyPath: player
