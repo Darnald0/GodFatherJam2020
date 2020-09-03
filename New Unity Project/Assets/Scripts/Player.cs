@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject barricadePrefab = null;
+    public BarricadeManager barricadeManager = null;
 
     public int wood = 0;
     public bool buildBarricade = false;
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!buildBarricade && Input.GetKeyDown(KeyCode.S))
+        if (!buildBarricade && !isStayingIdol && Input.GetKeyDown(KeyCode.S))
         {
             BuildBarricade();
         }
