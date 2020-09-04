@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
                 animator.SetBool("Running", false);
                 animator.SetBool("Cutting", false);
                 animator.SetBool("Scared", true);
-                soundScript.PlaySound(TYPE_AUDIO.Peur);
+                //soundScript.PlaySound(TYPE_AUDIO.Peur);
             }
         }
     }
