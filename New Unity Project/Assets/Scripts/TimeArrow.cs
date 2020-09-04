@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class TimeArrow : MonoBehaviour
 {
-    [SerializeField] private GameObject sky;
     [SerializeField] private GameObject arrow;
 
-    private float onePercent = 6f;
+    private float onePercent = 4f;
     private Vector2 newPosition;
     private float timer;
     // Start is called before the first frame update
