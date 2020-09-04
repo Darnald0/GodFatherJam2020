@@ -48,25 +48,29 @@ public class Idol : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && !alreadyMadeAnOffering && !offeringState && isInIdol && !skyScript.isNight)
         {
+            offeringIndex = 0;
             offeringNumber.SetActive(true);
             player.isStayingIdol = true;
             offeringState = true;
         }
         else
         {
+            arrayOffering[offeringIndex].GetComponent<Text>().color = Color.green;
             arrayOffering[offeringIndex].GetComponent<Text>().fontStyle = FontStyle.Bold;
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (offeringIndex > 0)
+                if (offeringIndex > 0 && offeringState)
                 {
+                    arrayOffering[offeringIndex].GetComponent<Text>().color = Color.white;
                     arrayOffering[offeringIndex].GetComponent<Text>().fontStyle = FontStyle.Normal;
                     offeringIndex--;
                 }
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
-                if (offeringIndex < 3)
+                if (offeringIndex < 3 && offeringState)
                 {
+                    arrayOffering[offeringIndex].GetComponent<Text>().color = Color.white;
                     arrayOffering[offeringIndex].GetComponent<Text>().fontStyle = FontStyle.Normal;
                     offeringIndex++;
                 }
