@@ -29,6 +29,8 @@ public class Tree : MonoBehaviour
     private ParticleSystem particles = null;
 
     PlayMultipleSound soundScript;
+    private bool isWoodGettingCut = false;
+    public AudioSource aS;
 
     private void Start()
     {
@@ -43,12 +45,21 @@ public class Tree : MonoBehaviour
     {
         if (isIn && nbEnemy == 0)
         {
+            if (Input.GetKeyDown(KeyCode.E) && realTimeToDamage > 0f && health > 1)
+            {
+                    soundScript.PlaySound(TYPE_AUDIO.CuttingTree);
+
+            }
+            if (Input.GetKeyUp(KeyCode.E) && realTimeToDamage > 0f && health > 1)
+            {
+                aS.Stop();
+            }
+
             if (Input.GetKey(KeyCode.E) && realTimeToDamage > 0f && health > 1)
             {
                 if (!particles.isPlaying)
                 {
                     particles.Play();
-                    soundScript.PlaySound(TYPE_AUDIO.CuttingTree);
                 }
 
                 realTimeToDamage -= Time.deltaTime;
@@ -58,6 +69,7 @@ public class Tree : MonoBehaviour
             }
             else if (realTimeToDamage <= 0f)
             {
+                aS.Stop();
                 realTimeToDamage = playerTimeToDamage;
                 health--;
                 player.wood += woodsGiven;

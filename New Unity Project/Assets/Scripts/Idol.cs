@@ -17,7 +17,7 @@ public class Idol : MonoBehaviour
     private Text godVoiceDisplay;
     private Text numberOfOfferingNeededDisplay;
     public int minimalNumberOfWoodNeeded;
-    private bool isInIdol;
+    private bool isInIdol = false;
     private int currentDay;
     public int numberOfWoodOffered;
     private bool alreadyMadeAnOffering = false;
@@ -71,7 +71,7 @@ public class Idol : MonoBehaviour
                 }
             }
 
-            if(Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 offeringNumber.SetActive(false);
                 offeringState = false;
@@ -88,7 +88,7 @@ public class Idol : MonoBehaviour
                         player.isStayingIdol = false;
                         break;
                     case 1:
-                        if (playerScript.wood >= 3)
+                        if (playerScript.wood >= 3 && offeringState)
                         {
                             playerScript.wood -= 3;
                             numberOfWoodOffered = 3;
@@ -100,7 +100,7 @@ public class Idol : MonoBehaviour
                         }
                         break;
                     case 2:
-                        if (playerScript.wood >= 6)
+                        if (playerScript.wood >= 6 && offeringState)
                         {
                             playerScript.wood -= 6;
                             numberOfWoodOffered = 6;
@@ -112,7 +112,7 @@ public class Idol : MonoBehaviour
                         }
                         break;
                     case 3:
-                        if (playerScript.wood >= 9)
+                        if (playerScript.wood >= 9 && offeringState)
                         {
                             playerScript.wood -= 9;
                             numberOfWoodOffered = 9;
@@ -204,31 +204,31 @@ public class Idol : MonoBehaviour
         {
             case 1:
                 playerScript.HalfWood();
-                godVoiceDisplay.color = new Color(0, 0, 0, 1);
+                godVoiceDisplay.color = new Color(1, 1, 1, 1);
                 godVoiceDisplay.text = "Si je ne peux pas l'avoir, personne ne l'aura !";
                 StartCoroutine(GodVoiceFade());
                 break;
             case 2:
                 treeManagerScript.DamageTree();
-                godVoiceDisplay.color = new Color(0, 0, 0, 1);
+                godVoiceDisplay.color = new Color(1, 1, 1, 1);
                 godVoiceDisplay.text = "Roulez jeunesse !";
                 StartCoroutine(GodVoiceFade());
                 break;
             case 3:
                 treeManagerScript.DestroyTree();
-                    godVoiceDisplay.color = new Color(0, 0, 0, 1);
+                godVoiceDisplay.color = new Color(1, 1, 1, 1);
                 godVoiceDisplay.text = "Pas de bras, pas d'arbre";
                 StartCoroutine(GodVoiceFade());
                 break;
             case 4:
                 villageScript.DestroyAHouse();
-                    godVoiceDisplay.color = new Color(0, 0, 0, 1);
+                godVoiceDisplay.color = new Color(1, 1, 1, 1);
                 godVoiceDisplay.text = "Du balais !";
                 StartCoroutine(GodVoiceFade());
                 break;
             case 5:
                 villageScript.HalfPassivGain();
-                    godVoiceDisplay.color = new Color(0, 0, 0, 1);
+                godVoiceDisplay.color = new Color(1, 1, 1, 1);
                 godVoiceDisplay.text = "Bande de faibles";
                 StartCoroutine(GodVoiceFade());
                 break;
@@ -249,14 +249,14 @@ public class Idol : MonoBehaviour
                 if (randomBuff == 1)
                 {
                     villageScript.PlusOneVillager();
-                    godVoiceDisplay.color = new Color(0, 0, 0, 1);
+                    godVoiceDisplay.color = new Color(1, 1, 1, 1);
                     godVoiceDisplay.text = "Voilà une nouvelle âme pure pour ton clan !";
                     StartCoroutine(GodVoiceFade());
                 }
                 else
                 {
                     playerScript.DoubleWood();
-                    godVoiceDisplay.color = new Color(0, 0, 0, 1);
+                    godVoiceDisplay.color = new Color(1, 1, 1, 1);
                     godVoiceDisplay.text = "Un peu de bois avec ton bois ?";
                     StartCoroutine(GodVoiceFade());
                 }
@@ -267,14 +267,14 @@ public class Idol : MonoBehaviour
                 if (randomBuff == 1)
                 {
                     treeManagerScript.DoubleTreeLife();
-                    godVoiceDisplay.color = new Color(0, 0, 0, 1);
+                    godVoiceDisplay.color = new Color(1, 1, 1, 1);
                     godVoiceDisplay.text = "J'ai béni la forêt de ma protection";
                     StartCoroutine(GodVoiceFade());
                 }
                 else //if (randomBuff == 2)
                 {
                     villageScript.DoublePassifGain();
-                    godVoiceDisplay.color = new Color(0, 0, 0, 1);
+                    godVoiceDisplay.color = new Color(1, 1, 1, 1);
                     godVoiceDisplay.text = "Mate moi ces biscotos";
                     StartCoroutine(GodVoiceFade());
                 }
@@ -289,14 +289,14 @@ public class Idol : MonoBehaviour
                 if (randomBuff == 1)
                 {
                     barricadeManagerScript.DoubleBarricadeHealth();
-                    godVoiceDisplay.color = new Color(0, 0, 0, 1);
+                    godVoiceDisplay.color = new Color(1, 1, 1, 1);
                     godVoiceDisplay.text = "Vous ne passerez pas !";
                     StartCoroutine(GodVoiceFade());
                 }
                 else
                 {
                     //cut wave in half
-                    godVoiceDisplay.color = new Color(0, 0, 0, 1);
+                    godVoiceDisplay.color = new Color(1, 1, 1, 1);
                     godVoiceDisplay.text = "Allez, ça dégage";
                     StartCoroutine(GodVoiceFade());
                 }

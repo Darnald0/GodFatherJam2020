@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Village : MonoBehaviour
 {
-    private int houseNumber = 0;
+    public int houseNumber = 0;
     [SerializeField] private Text numberOfHouseToDisplay;
     [SerializeField] public int costToBuild = 1;
     [SerializeField] private int costRisePerNewHouse = 1;
@@ -14,16 +14,18 @@ public class Village : MonoBehaviour
     private int baseGainPerHouse;
     private bool isInVillage;
 
-    PlayOneSound soundScript;
-
     private void Start()
     {
-        soundScript = GetComponent<PlayOneSound>();
         baseGainPerHouse = gainPerHouse;
     }
 
     private void Update()
     {
+        numberOfHouseToDisplay.text = houseNumber.ToString();
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            houseNumber++;
+        }
         if (Input.GetKeyDown(KeyCode.E) && isInVillage && player.wood >= costToBuild)
         {
             BuildHouse();
@@ -48,11 +50,10 @@ public class Village : MonoBehaviour
 
     public void BuildHouse()
     {
-        soundScript.PlaySound();
         player.wood -= costToBuild;
         houseNumber++;
         costToBuild += costRisePerNewHouse;
-        numberOfHouseToDisplay.text = houseNumber.ToString();
+
     }
 
     public void GainPassif()
@@ -62,7 +63,8 @@ public class Village : MonoBehaviour
 
     public void DestroyAHouse()
     {
-        houseNumber--;
+        houseNumber = houseNumber - 1;
+
     }
 
     public void HalfPassivGain()
@@ -72,8 +74,8 @@ public class Village : MonoBehaviour
 
     public void PlusOneVillager()
     {
-        soundScript.PlaySound();
-        houseNumber++;
+        houseNumber = houseNumber + 1;
+        Debug.Log(houseNumber);
     }
 
     public void DoublePassifGain()

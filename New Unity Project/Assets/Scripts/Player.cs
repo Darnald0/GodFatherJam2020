@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     public bool isBuilding = false;
     public bool isStayingIdol = false;
     public bool isFocusingEnemy = false;
+    [SerializeField] private Text woodText;
 
     [Header("Change This")]
     [SerializeField] private GameObject barricadePrefab = null;
@@ -24,10 +26,12 @@ public class Player : MonoBehaviour
     {
         timerAttack = timeToAttack;
         animator = GetComponent<Animator>();
+        woodText = woodText.GetComponent<Text>();
     }
 
     void Update()
     {
+        woodText.text  = wood.ToString();
         if (isBuilding && !animator.GetBool("Constructing"))
         {
             animator.SetBool("Idle", false);

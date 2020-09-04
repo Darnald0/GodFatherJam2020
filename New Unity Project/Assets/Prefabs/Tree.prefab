@@ -5036,6 +5036,7 @@ MonoBehaviour:
   spriteBarWhite: {fileID: 519516359366871426}
   bigTree: {fileID: 519516359996687298}
   littleTree: {fileID: 1831224610165485999}
+  aS: {fileID: 4155828473353515796}
 --- !u!61 &519516359544516656
 BoxCollider2D:
   m_ObjectHideFlags: 0

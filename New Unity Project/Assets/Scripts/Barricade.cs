@@ -27,6 +27,8 @@ public class Barricade : MonoBehaviour
     private int maxHealth = 0;
     private Color notBuildingColor = Color.white;
 
+    PlayOneSound soundScript;
+
     private void Start()
     {
         player = GetComponentInParent<Player>();
@@ -35,6 +37,7 @@ public class Barricade : MonoBehaviour
         spriteRenderer.color = notBuildingColor;
         lifeBarFloat = spriteLifeBar.transform.localScale.x;
         maxHealth = health;
+        soundScript = GetComponent<PlayOneSound>();
     }
 
     private void Update()
@@ -86,7 +89,10 @@ public class Barricade : MonoBehaviour
         }
 
         if (health <= 0 && isCreate)
+        {
+            soundScript.PlaySound();
             Destroy(gameObject);
+        }
     }
 
     public void DoubleHealth()
