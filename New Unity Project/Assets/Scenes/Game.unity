@@ -3007,6 +3007,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree
       objectReference: {fileID: 0}
+    - target: {fileID: 519516359996687296, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250862793273943728, guid: 4b162bc8d06bf4b4d9b2d3d48be93657,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b162bc8d06bf4b4d9b2d3d48be93657, type: 3}
 --- !u!1001 &1118153349990936632

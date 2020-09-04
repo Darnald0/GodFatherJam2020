@@ -49,3 +49,5 @@ MonoBehaviour:
   bigTreeNight: {fileID: 21300000, guid: dc249e716f7896f4084b43c48edfd14c, type: 3}
   littleTreeDay: {fileID: 21300000, guid: 4d282d5cb1c2ba94cb117ba0512f6a92, type: 3}
   littleTreeNight: {fileID: 21300000, guid: 365f0fb794e0d9e4fb22fcfc68c09eb3, type: 3}
+  deadTreeDay: {fileID: 21300000, guid: fcd710450eca35e44ac37a5c6e5bb885, type: 3}
+  deadTreeNight: {fileID: 21300000, guid: 92e4548777f51d94d83abf1c272f97ad, type: 3}

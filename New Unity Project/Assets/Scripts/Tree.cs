@@ -27,6 +27,7 @@ public class Tree : MonoBehaviour
     private float timeToGoUp = 0f;
     private float distToGoUp = 0f;
     private ParticleSystem particles = null;
+    private BoxCollider2D boxCollider = null;
 
     PlayMultipleSound soundScript;
     private bool isWoodGettingCut = false;
@@ -39,6 +40,7 @@ public class Tree : MonoBehaviour
         spriteBarTreeFloat = spriteBarTree.transform.localScale.x;
         particles = GetComponentInChildren<ParticleSystem>();
         soundScript = GetComponent<PlayMultipleSound>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
@@ -128,9 +130,18 @@ public class Tree : MonoBehaviour
         else if (particles.isPlaying && nbEnemy == 0)
             particles.Stop();
 
-        if (health == 0)
+        if (health <= 0)
         {
-            gameObject.SetActive(false);
+            if (boxCollider.enabled)
+            {
+                boxCollider.enabled = false;
+                nbEnemy = 0;
+            }
+        }
+        else
+        {
+            if (!boxCollider.enabled)
+                boxCollider.enabled = true;
         }
     }
 

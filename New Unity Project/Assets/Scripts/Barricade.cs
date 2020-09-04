@@ -18,9 +18,8 @@ public class Barricade : MonoBehaviour
     
     private int costRepair = 0;
 
-    
     private Player player = null;
-    private bool canBuild = true;
+    public int canBuild = 0;
     private float timeCreate = -1f;
     private SpriteRenderer spriteRenderer = null;
     private float lifeBarFloat = 0f;
@@ -55,10 +54,10 @@ public class Barricade : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S) && !isCreate)
         {
-            if (player.buildBarricade && costCreate <= player.wood && canBuild && timeCreate == -1f)
+            if (player.buildBarricade && costCreate <= player.wood && canBuild == 0 && timeCreate == -1f)
             {
                 player.wood -= costCreate;
-                canBuild = false;
+                canBuild = 0;
                 gameObject.transform.parent = player.barricadeManager.transform;
                 player.barricadeManager.barricades.Add(this);
                 Destroy(GetComponent<Rigidbody2D>());
@@ -67,7 +66,7 @@ public class Barricade : MonoBehaviour
                 player.isBuilding = true;
                 // Play anim here
             }
-            else if (player.buildBarricade && (costCreate > player.wood || !canBuild) && timeCreate == -1f)
+            else if (player.buildBarricade && (costCreate > player.wood || canBuild > 0) && timeCreate == -1f)
             {
                 player.buildBarricade = false;
                 Destroy(gameObject);
@@ -128,9 +127,9 @@ public class Barricade : MonoBehaviour
                 nbEnemy++;
             }
         }
-        else if (!isCreate)
+        else if (collision.tag != "Enemy" && !isCreate)
         {
-            canBuild = false;
+            canBuild++;
             Color grey = new Vector4(Color.grey.r, Color.grey.g, Color.grey.b, 0.2f);
             spriteRenderer.color = grey;
         }
@@ -143,10 +142,10 @@ public class Barricade : MonoBehaviour
 
         if (!isCreate)
         {
-            if (canBuild)
+            if (canBuild == 0)
                 return;
 
-            canBuild = true;
+            canBuild--;
             spriteRenderer.color = notBuildingColor;
         }
     }

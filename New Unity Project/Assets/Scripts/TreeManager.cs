@@ -12,6 +12,8 @@ public class TreeManager : MonoBehaviour
     public Sprite bigTreeNight = null;
     public Sprite littleTreeDay = null;
     public Sprite littleTreeNight = null;
+    public Sprite deadTreeDay = null;
+    public Sprite deadTreeNight = null;
 
     void Start()
     {
@@ -24,6 +26,23 @@ public class TreeManager : MonoBehaviour
         {
             switch (trees[i].health)
             {
+                case 0:
+                    if (!trees[i].littleTree.gameObject.activeSelf)
+                    {
+                        trees[i].littleTree.gameObject.SetActive(true);
+                        trees[i].bigTree.gameObject.SetActive(false);
+                    }
+
+                    if (sky.isNight && trees[i].littleTree.sprite != deadTreeNight)
+                    {
+                        trees[i].littleTree.sprite = deadTreeNight;
+                    }
+                    else if (!sky.isNight && trees[i].littleTree.sprite != deadTreeDay)
+                    {
+                        trees[i].littleTree.sprite = deadTreeDay;
+                    }
+                    break;
+
                 case 1:
                     if (!trees[i].littleTree.gameObject.activeSelf)
                     {
