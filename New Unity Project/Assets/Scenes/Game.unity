@@ -1745,6 +1745,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1602973465}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1442109969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4684968712890884351, guid: e2bbe646359064f4bb0e142a6650a6d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1118153349990936632}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1500075528
 GameObject:
   m_ObjectHideFlags: 0
@@ -3921,6 +3927,11 @@ PrefabInstance:
       propertyPath: barricadeManager
       value: 
       objectReference: {fileID: 1207720125}
+    - target: {fileID: 1118153350292607612, guid: e2bbe646359064f4bb0e142a6650a6d3,
+        type: 3}
+      propertyPath: ghost
+      value: 
+      objectReference: {fileID: 1442109969}
     - target: {fileID: 2293423649885452812, guid: e2bbe646359064f4bb0e142a6650a6d3,
         type: 3}
       propertyPath: m_Name
