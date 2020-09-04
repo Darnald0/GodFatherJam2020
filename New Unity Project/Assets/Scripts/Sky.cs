@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Sky : MonoBehaviour
 {
-    public float timer = 0.0f;
-    public int seconds = 0;
+    private float timer = 0.0f;
+    private int seconds = 0;
     public bool isNight = false;
     public int numberOfDay = 1;
     [SerializeField] private float timeInSecondToPassTheDay;

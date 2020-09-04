@@ -14,6 +14,7 @@ public class Idol : MonoBehaviour
     [SerializeField] private GameObject treeManager;
     [SerializeField] private GameObject barricadeManager;
     [SerializeField] private GameObject godVoice;
+    [SerializeField] private EndWin endWin;
     private Text godVoiceDisplay;
     private Text numberOfOfferingNeededDisplay;
     public int minimalNumberOfWoodNeeded;
@@ -183,7 +184,9 @@ public class Idol : MonoBehaviour
                 numberOfOfferingNeededDisplay.text = minimalNumberOfWoodNeeded.ToString();
                 break;
             case 6:
+
                 Debug.Log("gg");
+                endWin.YouWin();
                 break;
         }
     }
