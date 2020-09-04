@@ -3643,6 +3643,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8981639481045234050, guid: ec8e724868f85044caad2038380084ee,
+        type: 3}
+      propertyPath: soundsSfx.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981639481045234050, guid: ec8e724868f85044caad2038380084ee,
+        type: 3}
+      propertyPath: soundsSfx.Array.data[8].audioFor
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981639481045234050, guid: ec8e724868f85044caad2038380084ee,
+        type: 3}
+      propertyPath: soundsSfx.Array.data[8].audio
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f8a167fb4b206f4ca6a717c70af3c3e, type: 3}
+    - target: {fileID: 8981639481045234050, guid: ec8e724868f85044caad2038380084ee,
+        type: 3}
+      propertyPath: soundsSfx.Array.data[8].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981639481045234050, guid: ec8e724868f85044caad2038380084ee,
+        type: 3}
+      propertyPath: soundsSfx.Array.data[9].audioFor
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981639481045234050, guid: ec8e724868f85044caad2038380084ee,
+        type: 3}
+      propertyPath: soundsSfx.Array.data[9].audio
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f875100366aa354abad61a2b626a5e8, type: 3}
+    - target: {fileID: 8981639481045234050, guid: ec8e724868f85044caad2038380084ee,
+        type: 3}
+      propertyPath: soundsSfx.Array.data[9].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981639481045234050, guid: ec8e724868f85044caad2038380084ee,
+        type: 3}
+      propertyPath: soundsSfx.Array.data[7].audio
+      value: 
+      objectReference: {fileID: 8300000, guid: 253a0f7ceced5a346b7829523ab548b9, type: 3}
+    - target: {fileID: 8981639481045234050, guid: ec8e724868f85044caad2038380084ee,
+        type: 3}
+      propertyPath: soundsSfx.Array.data[7].audioFor
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981639481045234050, guid: ec8e724868f85044caad2038380084ee,
+        type: 3}
+      propertyPath: soundsSfx.Array.data[7].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981639481045234050, guid: ec8e724868f85044caad2038380084ee,
+        type: 3}
+      propertyPath: soundsSfx.Array.data[7].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981639481045234050, guid: ec8e724868f85044caad2038380084ee,
+        type: 3}
+      propertyPath: soundsSfx.Array.data[8].volume
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec8e724868f85044caad2038380084ee, type: 3}
 --- !u!1001 &519516359394922260
