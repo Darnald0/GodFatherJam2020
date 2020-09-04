@@ -7,6 +7,7 @@ public class TreeManager : MonoBehaviour
     private Tree[] trees;
     [SerializeField] private Sky sky;
     [SerializeField] private Player player;
+    [SerializeField] private EndWin endWin;
     [Space]
     public Sprite bigTreeDay = null;
     public Sprite bigTreeNight = null;
@@ -22,11 +23,13 @@ public class TreeManager : MonoBehaviour
 
     void Update()
     {
+        int treesAlive = trees.Length;
         for (int i = 0; i < trees.Length; i++)
         {
             switch (trees[i].health)
             {
                 case 0:
+                    treesAlive--;
                     if (!trees[i].littleTree.gameObject.activeSelf)
                     {
                         trees[i].littleTree.gameObject.SetActive(true);
@@ -84,7 +87,7 @@ public class TreeManager : MonoBehaviour
             Vector3 posTree = new Vector3(trees[i].gameObject.transform.position.x, 0f, 0f);
             Vector3 posPlayer = new Vector3(player.transform.position.x, 0f, 0f);
 
-            if (trees[i].nbEnemy > 0 || Vector3.Distance(posPlayer, posTree) <= 4f)
+            if ((trees[i].nbEnemy > 0 || Vector3.Distance(posPlayer, posTree) <= 4f) && trees[i].health > 0)
             {
                 trees[i].ShowLife(true);
             }
@@ -92,6 +95,11 @@ public class TreeManager : MonoBehaviour
             {
                 trees[i].ShowLife(false);
             }
+        }
+        
+        if (treesAlive == 0)
+        {
+            endWin.YouLose();
         }
     }
 
