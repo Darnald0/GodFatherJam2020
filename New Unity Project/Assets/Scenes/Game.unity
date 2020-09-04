@@ -549,7 +549,7 @@ PrefabInstance:
     - target: {fileID: 7117909206259604212, guid: 6f7a0c6e0bdecdf46a34ecbcc5d3c53a,
         type: 3}
       propertyPath: timeInSecondToPassTheDay
-      value: 30
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 7117909206259604213, guid: 6f7a0c6e0bdecdf46a34ecbcc5d3c53a,
         type: 3}
@@ -1222,6 +1222,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1845879364}
+    - target: {fileID: 3843695019393286371, guid: 30cba03824545cf4ca287c56036d732f,
+        type: 3}
+      propertyPath: costToBuild
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3843695019393286372, guid: 30cba03824545cf4ca287c56036d732f,
         type: 3}
       propertyPath: m_Name

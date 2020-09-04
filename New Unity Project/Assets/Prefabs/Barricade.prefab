@@ -104,10 +104,11 @@ MonoBehaviour:
   isCreate: 0
   nbEnemy: 0
   health: 20
-  costCreate: 1
+  costCreate: 2
   timeToCreate: 2
   spriteLifeBar: {fileID: 7576438209116371050}
   spriteLifeBarWhite: {fileID: 7815919143688990628}
+  canBuild: 0
 --- !u!61 &1605120311478737213
 BoxCollider2D:
   m_ObjectHideFlags: 0
