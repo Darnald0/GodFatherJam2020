@@ -203,7 +203,7 @@ public class Tree : MonoBehaviour
             if (player == null)
                 player = collision.gameObject.GetComponent<Player>();
 
-            if (!InputInfo.activeSelf)
+            if (!InputInfo.activeSelf && health > 1)
                 InputInfo.SetActive(true);
 
             isIn = true;
