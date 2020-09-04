@@ -11,11 +11,13 @@ public class Village : MonoBehaviour
     [SerializeField] private int costRisePerNewHouse = 1;
     [SerializeField] private Player player;
     [SerializeField] private int gainPerHouse = 2;
+    [SerializeField] private GameObject InputTouch = null;
     private int baseGainPerHouse;
     private bool isInVillage;
 
     private void Start()
     {
+        InputTouch.SetActive(false);
         baseGainPerHouse = gainPerHouse;
     }
 
@@ -34,16 +36,18 @@ public class Village : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Player")
+        if (col.tag == "Player" && !isInVillage)
         {
+            InputTouch.SetActive(true);
             isInVillage = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.tag == "Player")
+        if (col.tag == "Player" && isInVillage)
         {
+            InputTouch.SetActive(false);
             isInVillage = false;
         }
     }
