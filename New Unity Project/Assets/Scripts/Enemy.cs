@@ -25,10 +25,13 @@ public class Enemy : MonoBehaviour
     private bool rightFace = true;
     private Animator animator = null;
 
+    PlayMultipleSound soundScript;
+
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        soundScript = GetComponent<PlayMultipleSound>();
     }
 
     public void InitializeEnemy(float _speed, int _damage, bool _left)
@@ -61,6 +64,7 @@ public class Enemy : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A) && health > 0 && !isDead && playerIsIn && player.timeToAttack <= 0f)
         {
+            soundScript.PlaySound(TYPE_AUDIO.Cris);
             health = 0;
             playerIsIn = false;
             player.ResetAttack();
@@ -70,6 +74,7 @@ public class Enemy : MonoBehaviour
                 animator.SetBool("Running", false);
                 animator.SetBool("Cutting", false);
                 animator.SetBool("Scared", true);
+                soundScript.PlaySound(TYPE_AUDIO.Peur);
             }
         }
     }

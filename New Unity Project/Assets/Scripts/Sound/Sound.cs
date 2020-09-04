@@ -16,6 +16,8 @@ public enum TYPE_AUDIO
     RunningLeave,
     WalkLeave,
     BuildHouse,
+    Cris,
+    Peur,
 }
 
 [System.Serializable]
