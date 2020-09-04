@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +11,7 @@ public class Player : MonoBehaviour
     public bool isBuilding = false;
     public bool isStayingIdol = false;
     public bool isFocusingEnemy = false;
+    public bool isCuttingWood = false;
     [SerializeField] private Text woodText;
 
     [Header("Change This")]
@@ -22,16 +22,24 @@ public class Player : MonoBehaviour
     private float timerAttack = 0f;
     private Animator animator;
 
+    private int lastWood = 0;
+
     private void Start()
     {
         timerAttack = timeToAttack;
         animator = GetComponent<Animator>();
         woodText = woodText.GetComponent<Text>();
+        woodText.text = wood.ToString();
     }
 
     void Update()
     {
-        woodText.text  = wood.ToString();
+        if (lastWood != wood)
+        {
+            woodText.text = wood.ToString();
+            lastWood = wood;
+        }
+
         if (isBuilding && !animator.GetBool("Constructing"))
         {
             animator.SetBool("Idle", false);
@@ -59,7 +67,21 @@ public class Player : MonoBehaviour
             animator.SetBool("Walking", false);
             animator.SetBool("Running", false);
             animator.SetBool("Constructing", false);
+            animator.SetBool("Cutting", false);
             animator.SetBool("Scaring", true);
+        }
+    }
+
+    public void CuttingTree()
+    {
+        if (!animator.GetBool("Cutting"))
+        {
+            animator.SetBool("Idle", false);
+            animator.SetBool("Walking", false);
+            animator.SetBool("Running", false);
+            animator.SetBool("Constructing", false);
+            animator.SetBool("Scaring", false);
+            animator.SetBool("Cutting", true);
         }
     }
 

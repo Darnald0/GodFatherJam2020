@@ -22,10 +22,13 @@ public class Enemy : MonoBehaviour
     private Vector2 toGoInDeath = Vector2.zero;
     private bool playerIsIn = false;
     private Player player = null;
+    private bool rightFace = true;
+    private Animator animator = null;
 
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     public void InitializeEnemy(float _speed, int _damage, bool _left)
@@ -38,6 +41,11 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (dep < 0 && !rightFace)
+            Flip();
+        else if (dep > 0 && rightFace)
+            Flip();
+
         if (health <= 0 && !isDead)
         {
             isDead = true;
@@ -56,6 +64,13 @@ public class Enemy : MonoBehaviour
             health = 0;
             playerIsIn = false;
             player.ResetAttack();
+
+            if (!animator.GetBool("Scared"))
+            {
+                animator.SetBool("Running", false);
+                animator.SetBool("Cutting", false);
+                animator.SetBool("Scared", true);
+            }
         }
     }
 
@@ -64,19 +79,49 @@ public class Enemy : MonoBehaviour
     {
         if (tree == null && barricade == null)
         {
+            if (health > 0)
+            {
+                if (!animator.GetBool("Running"))
+                {
+                    animator.SetBool("Cutting", false);
+                    animator.SetBool("Running", true);
+                }
+            }
+            else
+            {
+                if (!animator.GetBool("Walking"))
+                {
+                    animator.SetBool("Scared", false);
+                    animator.SetBool("Cutting", false);
+                    animator.SetBool("Walking", true);
+                }
+            }
             rig.velocity = new Vector2(dep * 10f * speed * Time.deltaTime, rig.velocity.y);
         }
         else if (rig.velocity.x > 0.1f || rig.velocity.x < -0.1f)
             rig.velocity = new Vector2(0f, rig.velocity.y);
 
         if (tree != null)
+        {
             tree = tree.IsAlive();
+            IsCutting();
+        }
 
         if (barricade != null)
         {
             timer += Time.fixedDeltaTime;
             AttackBarricade();
             barricade = barricade.IsAlive();
+            IsCutting();
+        }
+    }
+
+    public void IsCutting()
+    {
+        if (!animator.GetBool("Cutting"))
+        {
+            animator.SetBool("Running", false);
+            animator.SetBool("Cutting", true);
         }
     }
 
@@ -113,5 +158,14 @@ public class Enemy : MonoBehaviour
             playerIsIn = false;
             player.isFocusingEnemy = false;
         }
+    }
+
+    private void Flip()
+    {
+        rightFace = !rightFace;
+
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 }

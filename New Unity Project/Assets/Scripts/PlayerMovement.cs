@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isRunning = Input.GetKey(KeyCode.Space);
 
-        if (!player.isBuilding && !player.isStayingIdol)
+        if (!player.isBuilding && !player.isStayingIdol && !player.isCuttingWood)
         {
             Horizontal = Input.GetAxisRaw("Horizontal");
 
@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("Running", false);
                 animator.SetBool("Constructing", false);
                 animator.SetBool("Scaring", false);
+                animator.SetBool("Cutting", false);
                 animator.SetBool("Idle", true);
             }
         }
@@ -64,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("Constructing", false);
                 animator.SetBool("Running", false);
                 animator.SetBool("Scaring", false);
+                animator.SetBool("Cutting", false);
                 animator.SetBool("Walking", true);
             }
         }
@@ -73,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 animator.SetBool("Idle", false);
                 animator.SetBool("Walking", false);
+                animator.SetBool("Cutting", false);
+                animator.SetBool("Scaring", false);
                 animator.SetBool("Running", true);
             }
         }
@@ -80,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!player.isBuilding && !player.isStayingIdol)
+        if (!player.isBuilding && !player.isStayingIdol && !player.isCuttingWood)
         {
             rig.velocity = new Vector2(Horizontal * (isRunning ? runSpeed : speed) * 10f * Time.fixedDeltaTime, rig.velocity.y);
         }

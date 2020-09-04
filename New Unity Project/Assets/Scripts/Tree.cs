@@ -62,6 +62,11 @@ public class Tree : MonoBehaviour
                     particles.Play();
                 }
 
+                if (!player.isCuttingWood)
+                    player.isCuttingWood = true;
+
+                player.CuttingTree();
+
                 realTimeToDamage -= Time.deltaTime;
 
                 spriteBarTree.transform.localScale = new Vector3(spriteBarTree.transform.localScale.x - (spriteBarTreeFloat / playerTimeToDamage) * Time.deltaTime, spriteBarTree.transform.localScale.y, spriteBarTree.transform.localScale.z);
@@ -76,11 +81,15 @@ public class Tree : MonoBehaviour
                 soundScript.PlaySound(TYPE_AUDIO.GetWood);
                 spriteBarTree.transform.localScale = new Vector3(spriteBarTreeFloat, spriteBarTree.transform.localScale.y, spriteBarTree.transform.localScale.z);
                 spriteBarTree.transform.localPosition = new Vector3(0f, spriteBarTree.transform.localPosition.y, spriteBarTree.transform.localPosition.z);
+                if (player != null && player.isCuttingWood)
+                    player.isCuttingWood = false;
+                if (particles.isPlaying)
+                    particles.Stop();
             }
             else
             {
-                if (particles.isPlaying)
-                    particles.Stop();
+                if (player != null && player.isCuttingWood)
+                    player.isCuttingWood = false;
             }
         }
         else if (!isIn && nbEnemy == 0)
