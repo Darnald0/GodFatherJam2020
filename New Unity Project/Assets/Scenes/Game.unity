@@ -1604,15 +1604,9 @@ PrefabInstance:
       objectReference: {fileID: 1845879364}
     - target: {fileID: 3843695019393286371, guid: 30cba03824545cf4ca287c56036d732f,
         type: 3}
-<<<<<<< HEAD
-      propertyPath: costToBuild
-      value: 2
-      objectReference: {fileID: 0}
-=======
       propertyPath: InputTouch
       value: 
       objectReference: {fileID: 790223556}
->>>>>>> master
     - target: {fileID: 3843695019393286372, guid: 30cba03824545cf4ca287c56036d732f,
         type: 3}
       propertyPath: m_Name
