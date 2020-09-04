@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
     [Header("Change This")]
     [SerializeField] private GameObject barricadePrefab = null;
+    [SerializeField] private GameObject ghost = null;
     public BarricadeManager barricadeManager = null;
     public float timeToAttack = 1f;
 
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     private Animator animator;
 
     private int lastWood = 0;
+    private float timerGhost = -1f;
 
     private void Start()
     {
@@ -34,6 +36,15 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (timerGhost <= 0f && ghost.activeSelf)
+        {
+            ghost.SetActive(false);
+        }
+        else if (timerGhost > 0f && ghost.activeSelf)
+        {
+            timerGhost -= Time.deltaTime;
+        }
+
         if (lastWood != wood)
         {
             woodText.text = wood.ToString();
@@ -61,6 +72,9 @@ public class Player : MonoBehaviour
     {
         timeToAttack = timerAttack;
         isFocusingEnemy = false;
+        ghost.SetActive(true);
+        timerGhost = 0.5f;
+
         if (!animator.GetBool("Scaring"))
         {
             animator.SetBool("Idle", false);
