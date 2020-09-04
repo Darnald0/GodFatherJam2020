@@ -118,6 +118,9 @@ public class Tree : MonoBehaviour
             if (!particles.isPlaying)
                 particles.Play();
 
+            if (player != null && player.isCuttingWood)
+                player.isCuttingWood = false;
+
             realEnemyTimeToDamage -= nbEnemy * Time.deltaTime;
 
             spriteBarTree.transform.localScale = new Vector3(spriteBarTree.transform.localScale.x - (spriteBarTreeFloat / enemyTimeToDamage) * nbEnemy * Time.deltaTime, spriteBarTree.transform.localScale.y, spriteBarTree.transform.localScale.z);
