@@ -8,7 +8,7 @@ public class Sky : MonoBehaviour
     private float timer = 0.0f;
     private int seconds = 0;
     public bool isNight = false;
-    public int numberOfDay = 1;
+    public int numberOfDay = 0;
     [SerializeField] private float timeInSecondToPassTheDay;
     [SerializeField] private Sprite dayColor;
     [SerializeField] private Sprite nightColor;
@@ -17,15 +17,18 @@ public class Sky : MonoBehaviour
     [SerializeField] private Idol idol;
     [SerializeField] private TreeManager treeManager;
     [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private Sprite[] dayList;
+    [SerializeField] private GameObject dayFeedback;
     private SpriteRenderer sr;
+    private Image daySr;
     PlayMultipleSound soundScript;
-    
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         soundScript = GetComponent<PlayMultipleSound>();
         soundScript.PlaySound(TYPE_AUDIO.MusicDay);
+        daySr = dayFeedback.GetComponent<Image>();
     }
 
     void Update()
@@ -54,12 +57,13 @@ public class Sky : MonoBehaviour
             soundScript.PlaySound(TYPE_AUDIO.MusicDay);
             StartCoroutine(FadeImageDay());
             isNight = false;
-            numberOfDay++;
             villageScript.GainPassif();
             villageScript.ResetPassifGain();
             idol.CheckDay();
             treeManager.PassDay();
             enemyManager.PassDay();
+            numberOfDay++;
+            daySr.sprite = dayList[numberOfDay - 2]; 
         }
         timer = 0;
     }
