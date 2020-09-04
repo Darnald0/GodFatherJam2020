@@ -15,6 +15,7 @@ public class Tree : MonoBehaviour
     [SerializeField] private int woodsGiven = 2;
     [SerializeField] private GameObject spriteBarTree = null;
     [SerializeField] private GameObject spriteBarWhite = null;
+    [SerializeField] private GameObject InputInfo = null;
     [Space]
     public SpriteRenderer bigTree = null;
     public SpriteRenderer littleTree = null;
@@ -41,6 +42,8 @@ public class Tree : MonoBehaviour
         particles = GetComponentInChildren<ParticleSystem>();
         soundScript = GetComponent<PlayMultipleSound>();
         boxCollider = GetComponent<BoxCollider2D>();
+
+        InputInfo.SetActive(false);
     }
 
     private void Update()
@@ -200,6 +203,9 @@ public class Tree : MonoBehaviour
             if (player == null)
                 player = collision.gameObject.GetComponent<Player>();
 
+            if (!InputInfo.activeSelf)
+                InputInfo.SetActive(true);
+
             isIn = true;
         }
         else if (collision.gameObject.CompareTag("Enemy") && health > 0)
@@ -222,6 +228,9 @@ public class Tree : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Player"))
             return;
+
+        if (InputInfo.activeSelf)
+            InputInfo.SetActive(false);
 
         isIn = false;
         timeToGoUp = playerTimeToDamage - realTimeToDamage;
