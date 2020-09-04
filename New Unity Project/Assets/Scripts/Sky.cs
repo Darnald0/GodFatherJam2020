@@ -19,9 +19,13 @@ public class Sky : MonoBehaviour
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private Sprite[] dayList;
     [SerializeField] private GameObject dayFeedback;
+    [SerializeField] private GameObject bg1;
+    [SerializeField] private GameObject bg2;
     private SpriteRenderer sr;
     private Image daySr;
     PlayMultipleSound soundScript;
+    SpriteRenderer bg1sr;
+    SpriteRenderer bg2sr;
 
     void Start()
     {
@@ -29,6 +33,9 @@ public class Sky : MonoBehaviour
         soundScript = GetComponent<PlayMultipleSound>();
         soundScript.PlaySound(TYPE_AUDIO.MusicDay);
         daySr = dayFeedback.GetComponent<Image>();
+
+        bg1sr = bg1.GetComponent<SpriteRenderer>();
+        bg2sr = bg2.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -79,6 +86,9 @@ public class Sky : MonoBehaviour
         }
 
         sr.sprite = nightColor;
+        bg1sr.sprite = nightColor;
+        bg2sr.sprite = nightColor;
+        Debug.Log("night");
 
         tempColor = fadeImage.color;
         for (float j = 1; j >= 0.2f; j -= 0.01f)
@@ -100,6 +110,8 @@ public class Sky : MonoBehaviour
         }
 
         sr.sprite = dayColor;
+        bg1sr.sprite = dayColor;
+        bg2sr.sprite = dayColor;
 
         tempColor = fadeImage.color;
         for (float j = 1; j >= 0; j -= 0.01f)

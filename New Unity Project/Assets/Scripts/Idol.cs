@@ -15,6 +15,10 @@ public class Idol : MonoBehaviour
     [SerializeField] private GameObject barricadeManager;
     [SerializeField] private GameObject godVoice;
     [SerializeField] private EndWin endWin;
+    [SerializeField] private Camera cam;
+    [SerializeField] private GameObject bg1;
+    [SerializeField] private GameObject bg2;
+
     private Text godVoiceDisplay;
     private Text numberOfOfferingNeededDisplay;
     public int minimalNumberOfWoodNeeded;
@@ -32,6 +36,7 @@ public class Idol : MonoBehaviour
     TreeManager treeManagerScript;
     BarricadeManager barricadeManagerScript;
 
+
     private void Start()
     {
         soundScript = GetComponent<PlayMultipleSound>();
@@ -42,6 +47,7 @@ public class Idol : MonoBehaviour
         villageScript = village.GetComponent<Village>();
         treeManagerScript = treeManager.GetComponent<TreeManager>();
         numberOfOfferingNeededDisplay = numberOfOfferingNeeded.GetComponent<Text>();
+
     }
 
     void Update()
@@ -188,8 +194,6 @@ public class Idol : MonoBehaviour
                 numberOfOfferingNeededDisplay.text = minimalNumberOfWoodNeeded.ToString();
                 break;
             case 6:
-
-                Debug.Log("gg");
                 endWin.YouWin();
                 break;
         }
