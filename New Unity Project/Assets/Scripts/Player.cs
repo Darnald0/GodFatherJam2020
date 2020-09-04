@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         if (timeToAttack > 0f)
             timeToAttack -= Time.deltaTime;
 
-        if (!buildBarricade && !isStayingIdol && Input.GetKeyDown(KeyCode.S))
+        if (!buildBarricade && !isBuilding && !isStayingIdol && Input.GetKeyDown(KeyCode.S))
         {
             BuildBarricade();
         }
