@@ -41,7 +41,7 @@ public class Barricade : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && !isCreate && timeCreate == -1f)
+        if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow)) && !isCreate && timeCreate == -1f)
         {
             player.buildBarricade = false;
             Destroy(gameObject);
@@ -57,7 +57,7 @@ public class Barricade : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.S) && !isCreate)
+        if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && !isCreate)
         {
             if (player.buildBarricade && costCreate <= player.wood && canBuild == 0 && timeCreate == -1f)
             {
