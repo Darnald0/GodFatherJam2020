@@ -149,6 +149,9 @@ public class Tree : MonoBehaviour
             if (!boxCollider.enabled)
                 boxCollider.enabled = true;
         }
+
+        if (InputInfo.activeSelf && health < 2)
+            InputInfo.SetActive(false);
     }
 
     public void PassDay()

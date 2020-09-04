@@ -24,21 +24,24 @@ public class Village : MonoBehaviour
     private void Update()
     {
         numberOfHouseToDisplay.text = houseNumber.ToString();
-        if(Input.GetKeyDown(KeyCode.B))
+        /*if(Input.GetKeyDown(KeyCode.B))
         {
             houseNumber++;
-        }
+        }*/
         if (Input.GetKeyDown(KeyCode.E) && isInVillage && player.wood >= costToBuild)
         {
             BuildHouse();
         }
+        if (player.wood < costToBuild && InputTouch.activeSelf)
+            InputTouch.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Player" && !isInVillage)
         {
-            InputTouch.SetActive(true);
+            if (player.wood >= costToBuild)
+                InputTouch.SetActive(true);
             isInVillage = true;
         }
     }
