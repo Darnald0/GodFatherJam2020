@@ -50,6 +50,11 @@ public class Barricade : MonoBehaviour
         if (!isCreate && timeCreate == -1f && timeCreate == -1f)
         {
             transform.position = new Vector3(player.transform.position.x - 6f * player.transform.localScale.x, transform.position.y);
+            if (costCreate > player.wood)
+            {
+                Color red = new Vector4(Color.red.r, Color.red.g, Color.red.b, 0.2f);
+                spriteRenderer.color = red;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.S) && !isCreate)
@@ -129,9 +134,10 @@ public class Barricade : MonoBehaviour
         }
         else if (collision.tag != "Enemy" && !isCreate)
         {
-            canBuild++;
-            Color grey = new Vector4(Color.grey.r, Color.grey.g, Color.grey.b, 0.2f);
-            spriteRenderer.color = grey;
+            if (costCreate <= player.wood)
+                canBuild++;
+            Color red = new Vector4(Color.red.r, Color.red.g, Color.red.b, 0.2f);
+            spriteRenderer.color = red;
         }
     }
 
@@ -142,11 +148,12 @@ public class Barricade : MonoBehaviour
 
         if (!isCreate)
         {
-            if (canBuild == 0)
-                return;
-
             canBuild--;
-            spriteRenderer.color = notBuildingColor;
+            if (canBuild == 0 && costCreate <= player.wood)
+            {
+                spriteRenderer.color = notBuildingColor;
+                return;
+            }
         }
     }
 }
